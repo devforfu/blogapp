@@ -1,6 +1,8 @@
 package app
 
-import "net/http"
+import (
+    "net/http"
+)
 
 func New() *http.Server {
     mux := http.NewServeMux()
