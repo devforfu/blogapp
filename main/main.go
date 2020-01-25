@@ -3,7 +3,7 @@ package main
 import (
     "blogapp/app"
     "context"
-    U "fastgoing"
+    util "fastgoing"
     log "github.com/sirupsen/logrus"
     "net/http"
     "os"
@@ -20,8 +20,11 @@ func main() {
 
 func init() {
     var (
-        templatesRoot = U.DefaultEnv("APP_TEMPLATES_ROOT", U.WorkDir())
-        appVerbosity = U.DefaultEnv("APP_VERBOSITY", "debug")
+        joiner = util.NewJoiner("/")
+        cwd = util.WorkDir()
+        pagesRoot = util.DefaultEnv("APP_PAGES_ROOT", joiner.Join(cwd, "pages"))
+        templatesRoot = util.DefaultEnv("APP_TEMPLATES_ROOT", joiner.Join(cwd, "templates"))
+        appVerbosity = util.DefaultEnv("APP_VERBOSITY", "debug")
     )
     var loggingLevel log.Level
     switch appVerbosity {
@@ -33,5 +36,8 @@ func init() {
     }
     log.SetOutput(os.Stdout)
     log.SetLevel(loggingLevel)
-    app.ServerConfig = &app.Config{TemplatesRoot:templatesRoot, LoggingLevel:loggingLevel}
+    app.ServerConfig = &app.Config{
+        PagesRoot: pagesRoot,
+        TemplatesRoot: templatesRoot,
+        LoggingLevel:loggingLevel}
 }

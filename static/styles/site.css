@@ -1,0 +1,51 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 6rem;
+    background: whitesmoke;
+}
+
+/* ---------- */
+/* Top Header */
+/* ---------- */
+
+.topmost {
+    height: 150px;
+    text-align: center;
+    background: white url('../images/blueprint.png');
+    position: relative;
+}
+
+.topmost .text, .topmost .image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.topmost .title {
+    padding-top: 20px;
+    font-size: 4em;
+    font-family: "Coda", cursive;
+    line-height: 1em;
+    color: ghostwhite;
+}
+
+.topmost .subtitle {
+    padding-bottom: 20px;
+    font-size: 1.2em;
+    font-family: "Space", monospace;
+    color: ghostwhite;
+}

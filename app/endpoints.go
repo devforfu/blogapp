@@ -1,6 +1,7 @@
 package app
 
 import (
+    util "fastgoing"
     "fmt"
     "github.com/gorilla/mux"
     log "github.com/sirupsen/logrus"
@@ -11,6 +12,12 @@ import (
 func Demo(w http.ResponseWriter, req *http.Request) {
     content, _ := GetPage("demo")
     _, _ = fmt.Fprint(w, content)
+}
+
+func Home(w http.ResponseWriter, req *http.Request) {
+    t, err := GetTemplate("index")
+    util.Check(err)
+    util.Check(t.Execute(w, Assets))
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
