@@ -1,12 +1,11 @@
 package app
 
 import (
-    util "fastgoing"
     "fmt"
     log "github.com/sirupsen/logrus"
     "gopkg.in/russross/blackfriday.v2"
-    "html/template"
     "io/ioutil"
+    "path/filepath"
 )
 
 func GetPage(name string) (string, error) {
@@ -18,16 +17,10 @@ func GetPage(name string) (string, error) {
     return string(rendered), nil
 }
 
-func GetTemplate(name string) (*template.Template, error) {
-    path := getTemplateFileContent(name)
-    log.Debugf("getting template: %s", path)
-    return template.ParseFiles(path)
-}
-
 func getPageFileContent(name string) string {
-    return util.JoinPaths(ServerConfig.PagesRoot, fmt.Sprintf("%s.md", name))
+    return filepath.Join(ServerConfig.PagesRoot, fmt.Sprintf("%s.md", name))
 }
 
 func getTemplateFileContent(name string) string {
-    return util.JoinPaths(ServerConfig.TemplatesRoot, fmt.Sprintf("%s.html", name))
+    return filepath.Join(ServerConfig.TemplatesRoot, fmt.Sprintf("%s.html", name))
 }

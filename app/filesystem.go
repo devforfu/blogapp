@@ -27,6 +27,6 @@ func (fs RestrictedFileSystem) Open(path string) (file http.File, err error) {
 }
 
 func (fs RestrictedFileSystem) openIndexFile(dir string) (http.File, error) {
-    indexFilePath := strings.TrimSuffix(dir, "/") + "/index.html"
+    indexFilePath := strings.TrimSuffix(dir, "/") + "/main.html"
     return fs.base.Open(indexFilePath)
 }

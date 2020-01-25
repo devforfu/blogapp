@@ -1,20 +1,24 @@
 package app
 
-import util "fastgoing"
+import (
+    "path/filepath"
+)
 
-type assets struct {
-    root string
-}
+var root = "/static"
 
-var images = map[string]string{
-    "imageTopHeaderBackground": "blueprint.png",
-    "imageTopHeaderBackgroundOverlay": "writings.png",
-}
+func image(name string) string { return filepath.Join(root, "images", name) }
+func css(name string) string   { return filepath.Join(root, "styles", name) }
 
-var Assets = &assets{root:"/static"}
-
-func (a *assets) Image(id string) string {
-    name, ok := images[id]
-    if !ok { return "" }
-    return util.JoinPaths(a.root, "images", name)
+var Assets = struct {
+    Images map[string]string
+    Styles map[string]string
+}{
+    map[string]string{
+        "TopHeaderBackground": image("blueprint.png"),
+        "TopHeaderBackgroundOverlay": image("writings.png"),
+    },
+    map[string]string{
+        "Reset": css("reset.css"),
+        "PageHeader": css("page_header.css"),
+    },
 }

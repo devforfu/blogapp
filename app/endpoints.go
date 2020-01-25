@@ -5,19 +5,16 @@ import (
     "fmt"
     "github.com/gorilla/mux"
     log "github.com/sirupsen/logrus"
+    "html/template"
     "net/http"
     "strings"
 )
 
-func Demo(w http.ResponseWriter, req *http.Request) {
-    content, _ := GetPage("demo")
-    _, _ = fmt.Fprint(w, content)
-}
-
 func Home(w http.ResponseWriter, req *http.Request) {
-    t, err := GetTemplate("index")
-    util.Check(err)
-    util.Check(t.Execute(w, Assets))
+    mainPath := getTemplateFileContent("main")
+    homePath := getTemplateFileContent("home")
+    t, _ := template.ParseFiles(mainPath, homePath)
+    util.Check(t.ExecuteTemplate(w, "main", Assets))
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {

@@ -1,0 +1,28 @@
+{{ define "main" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ template "title" }}</title>
+    <link rel="stylesheet" href="{{.Styles.Reset}}">
+    <link rel="stylesheet" href="{{.Styles.PageHeader}}">
+    <style>
+        .background {
+            background: white url("{{.Images.TopHeaderBackground}}");
+        }
+    </style>
+</head>
+<body>
+    <div class="topmost background">
+        <div class="image">
+            <img src="{{.Images.TopHeaderBackgroundOverlay}}" alt="image" width="1250">
+        </div>
+        <div class="text">
+            <div class="title">Ilia Zaitsev</div>
+            <div class="subtitle">{Software Developer & AI Enthusiast}</div>
+        </div>
+    </div>
+    {{ template "content" }}
+</body>
+</html>
+{{ end }}

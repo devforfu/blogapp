@@ -1,0 +1,19 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 6rem;
+    background: whitesmoke;
+}
