@@ -1,7 +1,6 @@
 package app
 
 import (
-    U "fastgoing"
     "fmt"
     log "github.com/sirupsen/logrus"
     "gopkg.in/russross/blackfriday.v2"
@@ -9,13 +8,13 @@ import (
     "strings"
 )
 
-func GetPage(name string) string {
+func GetPage(name string) (string, error) {
     path := getTemplatePath(name)
     log.Debugf("getting template: %s", path)
     data, err := ioutil.ReadFile(path)
-    U.Check(err)
+    if err != nil { return "", err }
     rendered := blackfriday.Run(data)
-    return string(rendered)
+    return string(rendered), nil
 }
 
 func getTemplatePath(name string) string {
