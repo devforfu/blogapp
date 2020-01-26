@@ -19,9 +19,9 @@ func TestReadPreamble(t *testing.T) {
 
 An example of post content that goes right after *preamble*.
 `
-    markdownFileContent := fmt.Sprintf("```yaml\n%s```\n%s", jsonPreamble, postContent)
+    markdownFileContent := fmt.Sprintf("```json\n%s```\n%s", jsonPreamble, postContent)
 
-    preamble := ExtractPreamble(markdownFileContent)
+    preamble, _ := ExtractPreamble(markdownFileContent)
 
     assert.NotNil(t, preamble)
 }

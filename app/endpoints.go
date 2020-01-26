@@ -1,6 +1,7 @@
 package app
 
 import (
+    "blogapp/app/blog"
     util "fastgoing"
     "fmt"
     "github.com/gorilla/mux"
@@ -8,7 +9,6 @@ import (
     "html/template"
     "net/http"
     "strconv"
-    "strings"
 )
 
 func Home(w http.ResponseWriter, req *http.Request) {
@@ -19,30 +19,35 @@ func Home(w http.ResponseWriter, req *http.Request) {
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
-    log.Debugf("got URL request: %s", req.URL.Path)
-    ref, err := parseReference(req)
-    if err != nil {
-        log.Debugf("cannot resolve the template: %s", err.Error())
-        http.NotFound(w, req)
-    } else {
-        content, err := GetPageContent(ref.GetPageName())
+    var notFoundIfError = func(err error) {
         if err != nil {
+            log.Debugf("cannot resolve the template: %s", err.Error())
             http.NotFound(w, req)
         }
-        _, _ = fmt.Fprint(w, content)
     }
+    ref, err := parseReference(req)
+    notFoundIfError(err)
+    post, err := blog.NewPost(ref)
+    notFoundIfError(err)
+    _, _ = post.Write(w)
 }
 
-type PageReference struct {
-    Year, Month, Day int
-    Name string
-}
+//func BlogPage(w http.ResponseWriter, req *http.Request) {
+//    log.Debugf("got URL request: %s", req.URL.Path)
+//    ref, err := parseReference(req)
+//    if err != nil {
+//        log.Debugf("cannot resolve the template: %s", err.Error())
+//        http.NotFound(w, req)
+//    } else {
+//        content, err := GetPageContent(ref.GetPageName())
+//        if err != nil {
+//            http.NotFound(w, req)
+//        }
+//        _, _ = fmt.Fprint(w, content)
+//    }
+//}
 
-func (ref *PageReference) GetPageName() string {
-    return normalize(fmt.Sprintf("%d_%d_%d_%s", ref.Year, ref.Month, ref.Day, ref.Name))
-}
-
-func parseReference(r *http.Request) (ref *PageReference, err error) {
+func parseReference(r *http.Request) (ref *blog.PostReference, err error) {
     params := mux.Vars(r)
 
     year, err := strconv.ParseInt(params["year"], 10, 32)
@@ -58,15 +63,11 @@ func parseReference(r *http.Request) (ref *PageReference, err error) {
     if !ok {
         return nil, fmt.Errorf("post parameter is not found")
     } else {
-        ref = &PageReference{
+        ref = &blog.PostReference{
             Year:int(year),
             Month:int(month),
             Day:int(day),
             Name:name}
         return ref, nil
     }
-}
-
-func normalize(name string) string {
-    return strings.ReplaceAll(strings.ToLower(name), "-", "_")
 }
