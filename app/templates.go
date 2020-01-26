@@ -8,7 +8,7 @@ import (
     "path/filepath"
 )
 
-func GetPage(name string) (string, error) {
+func GetPageContent(name string) (string, error) {
     path := getPageFileContent(name)
     log.Debugf("getting blog page: %s", path)
     data, err := ioutil.ReadFile(path)

@@ -11,6 +11,7 @@
             background: white url("{{.Images.TopHeaderBackground}}");
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 <body>
     <div class="topmost background">
@@ -23,6 +24,16 @@
         </div>
     </div>
     {{ template "content" }}
+    <script>
+        function addSyntaxHighlight() {
+            const items = document.getElementsByTagName("pre");
+            for (const item of items) {
+                item.classList += " prettyprint";
+            }
+        }
+
+        addSyntaxHighlight();
+    </script>
 </body>
 </html>
 {{ end }}

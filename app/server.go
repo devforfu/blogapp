@@ -11,7 +11,7 @@ func New() *http.Server {
     fs := http.FileServer(RestrictedFileSystem{http.Dir("static")})
     router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
     router.HandleFunc("/", Home)
-    router.HandleFunc(`/posts/{post:[a-zA-Z0-9\-]+}`, BlogPage)
+    router.HandleFunc(`/blog/{year:[0-9]+}/{month:[0-9]+}/{day:[0-9]+}/{post:[a-zA-Z0-9\-]+}`, BlogPage)
     server := &http.Server{Addr:"0.0.0.0:9090", Handler:router}
     return server
 }
