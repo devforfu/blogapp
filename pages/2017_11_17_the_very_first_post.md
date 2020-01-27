@@ -7,6 +7,8 @@
 }
 ```
 
+<!--preamble-->
+
 Recently I've decided to build a simple deep learning machine with single
 **GTX 1080Ti GPU** and based on **Ubuntu 16.04**. The machine's assembling process
 was quite straightforward. But while deploying required software, a few

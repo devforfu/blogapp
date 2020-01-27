@@ -2,17 +2,44 @@ package config
 
 import (
     "fmt"
+    util "github.com/devforfu/fastgoing"
     "github.com/sirupsen/logrus"
+    log "github.com/sirupsen/logrus"
     "path/filepath"
 )
+
+const defaultPreambleString = "<!--preamble-->"
 
 type Config struct {
     PagesRoot string
     TemplatesRoot string
     LoggingLevel logrus.Level
+    PostPreambleSeparator string
 }
 
 var ServerConfig *Config
+
+func FromEnvironment() *Config {
+    var (
+        cwd = util.WorkDir()
+        pagesRoot = util.DefaultEnv("APP_PAGES_ROOT", filepath.Join(cwd, "pages"))
+        templatesRoot = util.DefaultEnv("APP_TEMPLATES_ROOT", filepath.Join(cwd, "templates"))
+        appVerbosity = util.DefaultEnv("APP_VERBOSITY", "debug")
+    )
+    var loggingLevel log.Level
+    switch appVerbosity {
+    case "debug": loggingLevel = log.DebugLevel
+    case "info":  loggingLevel = log.InfoLevel
+    case "warn":  loggingLevel = log.WarnLevel
+    case "error": loggingLevel = log.ErrorLevel
+    default:      loggingLevel = log.DebugLevel
+    }
+    return &Config{
+        PagesRoot:pagesRoot,
+        TemplatesRoot:templatesRoot,
+        LoggingLevel:loggingLevel,
+        PostPreambleSeparator:defaultPreambleString}
+}
 
 func (c *Config) GetPostFilePath(name string) string {
     return filepath.Join(c.PagesRoot, fmt.Sprintf("%s.md", name))

@@ -8,6 +8,7 @@ import (
     "gopkg.in/russross/blackfriday.v2"
     "io"
     "io/ioutil"
+    "path/filepath"
     "regexp"
     "strings"
 )
@@ -33,10 +34,11 @@ type Post struct {
 }
 
 func NewPost(ref *PostReference) (*Post, error) {
-    println(config.ServerConfig.TemplatesRoot)
-    markdownContent, err := ioutil.ReadFile(ref.Filename())
+    path := filepath.Join(config.ServerConfig.PagesRoot, ref.Filename())
+    markdownContent, err := ioutil.ReadFile(path)
     if err != nil { return nil, err }
-    preamble, post := ExtractPreamble(string(markdownContent))
+    preamble, post, err := ExtractPreamble(string(markdownContent))
+    if err != nil { return nil, err }
     rendered := blackfriday.Run([]byte(post))
     return &Post{Preamble:preamble, RenderedPage:string(rendered)}, nil
 }
@@ -53,14 +55,20 @@ type PostPreamble struct {
     Identifier int   `json:"identifier"`
 }
 
-func ExtractPreamble(markdownContent string) (*PostPreamble, string) {
-    reg := regexp.MustCompile("^```json\n[\\d\\D]+```")
-    jsonPreamble := reg.FindString(markdownContent)
-    lines := strings.Split(jsonPreamble, "\n")
-    jsonOnly := strings.Join(lines[1:len(lines)-1], "\n")
+func ExtractPreamble(markdownContent string) (*PostPreamble, string, error) {
+    sep := config.ServerConfig.PostPreambleSeparator
+    index := strings.Index(markdownContent, sep)
+    if index == -1 {
+        return nil, "", fmt.Errorf("posts without preamble are not valid")
+    }
+
+    jsonPreambleOnly := markdownContent[:index]
+    postContentOnly := markdownContent[index:]
+    reg := regexp.MustCompile("^```json\n(?P<preamble>[\\w\\W]+)```")
+    matched := reg.FindStringSubmatch(jsonPreambleOnly)
+
     var preamble PostPreamble
-    util.Check(json.Unmarshal([]byte(jsonOnly), &preamble))
-    postOnly := reg.ReplaceAllString(markdownContent, "")
-    trimmed := strings.Trim(postOnly, " \t\n")
-    return &preamble, trimmed
+    util.Check(json.Unmarshal([]byte(matched[1]), &preamble))
+    trimmed := strings.Trim(strings.ReplaceAll(postContentOnly, sep, ""), "\n\t ")
+    return &preamble, trimmed, nil
 }

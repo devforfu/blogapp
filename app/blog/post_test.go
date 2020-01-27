@@ -1,13 +1,19 @@
 package blog
 
 import (
+    "blogapp/app/config"
     "fmt"
     "github.com/stretchr/testify/assert"
     "testing"
 )
 
+func init() {
+    config.ServerConfig = config.FromEnvironment()
+}
+
 func TestReadPreamble(t *testing.T) {
-    jsonPreamble := `{
+    jsonPreamble := `
+{
     "category": "blog",
     "title": "Test Title",
     "tags": ["tag1", "tag2"],
@@ -15,13 +21,22 @@ func TestReadPreamble(t *testing.T) {
 }
 `
     postContent := `
+<!--preamble-->
+
 # Example
 
 An example of post content that goes right after *preamble*.
-`
-    markdownFileContent := fmt.Sprintf("```json\n%s```\n%s", jsonPreamble, postContent)
+` + "```python\nx=1\n```"
 
-    preamble, _ := ExtractPreamble(markdownFileContent)
+    expectedPost := "# Example\n\n" +
+                    "An example of post content that goes right after *preamble*.\n" +
+                    "```python\nx=1\n```"
 
+    markdownFileContent := fmt.Sprintf("```json%s```%s", jsonPreamble, postContent)
+
+    preamble, postWithoutPreamble, err := ExtractPreamble(markdownFileContent)
+
+    assert.Nil(t, err)
     assert.NotNil(t, preamble)
+    assert.Equal(t, expectedPost, postWithoutPreamble)
 }
