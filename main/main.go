@@ -2,6 +2,7 @@ package main
 
 import (
     "blogapp/app"
+    "blogapp/app/config"
     "context"
     util "github.com/devforfu/fastgoing"
     log "github.com/sirupsen/logrus"
@@ -36,7 +37,7 @@ func init() {
     }
     log.SetOutput(os.Stdout)
     log.SetLevel(loggingLevel)
-    app.ServerConfig = &app.Config{
+    config.ServerConfig = &config.Config{
         PagesRoot: pagesRoot,
         TemplatesRoot: templatesRoot,
         LoggingLevel:loggingLevel}

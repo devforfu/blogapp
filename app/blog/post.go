@@ -1,6 +1,7 @@
 package blog
 
 import (
+    "blogapp/app/config"
     "encoding/json"
     "fmt"
     util "github.com/devforfu/fastgoing"
@@ -32,6 +33,7 @@ type Post struct {
 }
 
 func NewPost(ref *PostReference) (*Post, error) {
+    println(config.ServerConfig.TemplatesRoot)
     markdownContent, err := ioutil.ReadFile(ref.Filename())
     if err != nil { return nil, err }
     preamble, post := ExtractPreamble(string(markdownContent))
