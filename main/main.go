@@ -4,11 +4,9 @@ import (
     "blogapp/app"
     "blogapp/app/config"
     "context"
-    util "github.com/devforfu/fastgoing"
     log "github.com/sirupsen/logrus"
     "net/http"
     "os"
-    "path/filepath"
 )
 
 func main() {
@@ -21,24 +19,8 @@ func main() {
 }
 
 func init() {
-    var (
-        cwd = util.WorkDir()
-        pagesRoot = util.DefaultEnv("APP_PAGES_ROOT", filepath.Join(cwd, "pages"))
-        templatesRoot = util.DefaultEnv("APP_TEMPLATES_ROOT", filepath.Join(cwd, "templates"))
-        appVerbosity = util.DefaultEnv("APP_VERBOSITY", "debug")
-    )
-    var loggingLevel log.Level
-    switch appVerbosity {
-    case "debug": loggingLevel = log.DebugLevel
-    case "info":  loggingLevel = log.InfoLevel
-    case "warn":  loggingLevel = log.WarnLevel
-    case "error": loggingLevel = log.ErrorLevel
-    default:      loggingLevel = log.DebugLevel
-    }
+    config.ServerConfig = config.FromEnvironment()
     log.SetOutput(os.Stdout)
-    log.SetLevel(loggingLevel)
-    config.ServerConfig = &config.Config{
-        PagesRoot: pagesRoot,
-        TemplatesRoot: templatesRoot,
-        LoggingLevel:loggingLevel}
+    log.SetLevel(config.ServerConfig.LoggingLevel)
 }
+
