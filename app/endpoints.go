@@ -2,8 +2,8 @@ package app
 
 import (
     "blogapp/app/blog"
-    util "fastgoing"
     "fmt"
+    util "github.com/devforfu/fastgoing"
     "github.com/gorilla/mux"
     log "github.com/sirupsen/logrus"
     "html/template"

@@ -7,7 +7,6 @@ import (
 
 func New() *http.Server {
     router := mux.NewRouter()
-    // fs := http.FileServer(http.Dir("static"))
     fs := http.FileServer(RestrictedFileSystem{http.Dir("static")})
     router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
     router.HandleFunc("/", Home)
