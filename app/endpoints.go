@@ -2,6 +2,7 @@ package app
 
 import (
     "blogapp/app/blog"
+    "blogapp/app/config"
     "fmt"
     util "github.com/devforfu/fastgoing"
     "github.com/gorilla/mux"
@@ -12,10 +13,10 @@ import (
 )
 
 func Home(w http.ResponseWriter, req *http.Request) {
-    mainPath := getTemplateFileContent("main")
-    homePath := getTemplateFileContent("home")
+    mainPath := config.ServerConfig.GetTemplateFilePath("main")
+    homePath := config.ServerConfig.GetTemplateFilePath("home")
     t, _ := template.ParseFiles(mainPath, homePath)
-    util.Check(t.ExecuteTemplate(w, "main", Assets))
+    util.Check(t.ExecuteTemplate(w, "main", config.Assets))
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
@@ -31,21 +32,6 @@ func BlogPage(w http.ResponseWriter, req *http.Request) {
     notFoundIfError(err)
     _, _ = post.Write(w)
 }
-
-//func BlogPage(w http.ResponseWriter, req *http.Request) {
-//    log.Debugf("got URL request: %s", req.URL.Path)
-//    ref, err := parseReference(req)
-//    if err != nil {
-//        log.Debugf("cannot resolve the template: %s", err.Error())
-//        http.NotFound(w, req)
-//    } else {
-//        content, err := GetPageContent(ref.GetPageName())
-//        if err != nil {
-//            http.NotFound(w, req)
-//        }
-//        _, _ = fmt.Fprint(w, content)
-//    }
-//}
 
 func parseReference(r *http.Request) (ref *blog.PostReference, err error) {
     params := mux.Vars(r)
