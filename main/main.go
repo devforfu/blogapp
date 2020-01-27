@@ -3,10 +3,11 @@ package main
 import (
     "blogapp/app"
     "context"
-    util "fastgoing"
+    util "github.com/devforfu/fastgoing"
     log "github.com/sirupsen/logrus"
     "net/http"
     "os"
+    "path/filepath"
 )
 
 func main() {
@@ -20,10 +21,9 @@ func main() {
 
 func init() {
     var (
-        joiner = util.NewJoiner("/")
         cwd = util.WorkDir()
-        pagesRoot = util.DefaultEnv("APP_PAGES_ROOT", joiner.Join(cwd, "pages"))
-        templatesRoot = util.DefaultEnv("APP_TEMPLATES_ROOT", joiner.Join(cwd, "templates"))
+        pagesRoot = util.DefaultEnv("APP_PAGES_ROOT", filepath.Join(cwd, "pages"))
+        templatesRoot = util.DefaultEnv("APP_TEMPLATES_ROOT", filepath.Join(cwd, "templates"))
         appVerbosity = util.DefaultEnv("APP_VERBOSITY", "debug")
     )
     var loggingLevel log.Level

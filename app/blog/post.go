@@ -2,8 +2,8 @@ package blog
 
 import (
     "encoding/json"
-    util "fastgoing"
     "fmt"
+    util "github.com/devforfu/fastgoing"
     "gopkg.in/russross/blackfriday.v2"
     "io"
     "io/ioutil"
