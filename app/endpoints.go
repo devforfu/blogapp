@@ -2,6 +2,7 @@ package app
 
 import (
     "blogapp/app/blog"
+    "blogapp/app/cache"
     "blogapp/app/config"
     "fmt"
     util "github.com/devforfu/fastgoing"
@@ -20,31 +21,50 @@ func Home(w http.ResponseWriter, req *http.Request) {
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
-    var notFoundIfError = func(err error) {
+    var notFoundOnError = func(err error) bool {
         if err != nil {
             log.Debugf("cannot resolve the template: %s", err.Error())
             http.NotFound(w, req)
+            return true
+        } else {
+            return false
         }
     }
 
+    var getPost = func(ref *blog.PostReference) *blog.Post {
+       key := ref.Filename()
+       post := cache.Default.Get(key)
+       if post != nil { return post }
+       post, err := blog.NewPost(ref)
+       if notFoundOnError(err) { return nil }
+       cache.Default.Set(key, post)
+       return post
+    }
+
     ref, err := parseReference(req)
-    notFoundIfError(err)
-    post, err := blog.NewPost(ref)
-    notFoundIfError(err)
-    path := config.ServerConfig.GetTemplateFilePath("main")
-    t, err := template.ParseFiles(path)
-    notFoundIfError(err)
-    content := fmt.Sprintf(`
+    if notFoundOnError(err) { return }
+    //post, err := blog.NewPost(ref)
+    //if notFoundOnError(err) { return }
+    if post := getPost(ref); post != nil {
+        path := config.ServerConfig.GetTemplateFilePath("main")
+        t, err := template.ParseFiles(path)
+        if notFoundOnError(err) {
+            return
+        }
+        content := fmt.Sprintf(`
 {{ define "title" }}%s{{ end }}
 {{ define "content" }}
 %s
 {{ end }}`, post.Preamble.Title, post.RenderedPage)
-    t, err = t.Parse(content)
-    notFoundIfError(err)
-    err = t.ExecuteTemplate(w, "main", config.Assets)
+        t, err = t.Parse(content)
+        if notFoundOnError(err) {
+            return
+        }
+        err = t.ExecuteTemplate(w, "main", config.Assets)
 
-    if err != nil {
-        log.Debugf("failed to execute the template: %s", err)
+        if err != nil {
+            log.Debugf("failed to execute the template: %s", err)
+        }
     }
 }
 
