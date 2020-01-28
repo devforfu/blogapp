@@ -1,4 +1,4 @@
-package app
+package server
 
 import (
     "blogapp/app/blog"
@@ -43,28 +43,8 @@ func BlogPage(w http.ResponseWriter, req *http.Request) {
 
     ref, err := parseReference(req)
     if notFoundOnError(err) { return }
-    //post, err := blog.NewPost(ref)
-    //if notFoundOnError(err) { return }
     if post := getPost(ref); post != nil {
-        path := config.ServerConfig.GetTemplateFilePath("main")
-        t, err := template.ParseFiles(path)
-        if notFoundOnError(err) {
-            return
-        }
-        content := fmt.Sprintf(`
-{{ define "title" }}%s{{ end }}
-{{ define "content" }}
-%s
-{{ end }}`, post.Preamble.Title, post.RenderedPage)
-        t, err = t.Parse(content)
-        if notFoundOnError(err) {
-            return
-        }
-        err = t.ExecuteTemplate(w, "main", config.Assets)
-
-        if err != nil {
-            log.Debugf("failed to execute the template: %s", err)
-        }
+        post.RenderWith("main", w)
     }
 }
 

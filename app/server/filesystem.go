@@ -1,5 +1,5 @@
 // https://dev.to/hauxe/golang-http-serve-static-files-correctly-2oj2
-package app
+package server
 
 import (
     "net/http"
