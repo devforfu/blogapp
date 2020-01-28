@@ -26,11 +26,26 @@ func BlogPage(w http.ResponseWriter, req *http.Request) {
             http.NotFound(w, req)
         }
     }
+
     ref, err := parseReference(req)
     notFoundIfError(err)
     post, err := blog.NewPost(ref)
     notFoundIfError(err)
-    _, _ = post.Write(w)
+    path := config.ServerConfig.GetTemplateFilePath("main")
+    t, err := template.ParseFiles(path)
+    notFoundIfError(err)
+    content := fmt.Sprintf(`
+{{ define "title" }}%s{{ end }}
+{{ define "content" }}
+%s
+{{ end }}`, post.Preamble.Title, post.RenderedPage)
+    t, err = t.Parse(content)
+    notFoundIfError(err)
+    err = t.ExecuteTemplate(w, "main", config.Assets)
+
+    if err != nil {
+        log.Debugf("failed to execute the template: %s", err)
+    }
 }
 
 func parseReference(r *http.Request) (ref *blog.PostReference, err error) {
