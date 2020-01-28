@@ -1,8 +1,8 @@
 package main
 
 import (
-    "blogapp/app"
     "blogapp/app/config"
+    "blogapp/app/server"
     "context"
     log "github.com/sirupsen/logrus"
     "net/http"
@@ -10,12 +10,12 @@ import (
 )
 
 func main() {
-    server := app.New()
-    log.Debugf("starting listening the address: %s", server.Addr)
-    if err := server.ListenAndServe(); err != http.ErrServerClosed {
+    srv := server.New()
+    log.Debugf("starting listening the address: %s", srv.Addr)
+    if err := srv.ListenAndServe(); err != http.ErrServerClosed {
         log.Fatalf("server error: %s", err)
     }
-    _ = server.Shutdown(context.TODO())
+    _ = srv.Shutdown(context.TODO())
 }
 
 func init() {

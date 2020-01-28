@@ -6,6 +6,7 @@ import (
     "fmt"
     util "github.com/devforfu/fastgoing"
     "gopkg.in/russross/blackfriday.v2"
+    "html/template"
     "io"
     "io/ioutil"
     "path/filepath"
@@ -43,8 +44,12 @@ func NewPost(ref *PostReference) (*Post, error) {
     return &Post{Preamble:preamble, RenderedPage:string(rendered)}, nil
 }
 
-func (p *Post) Write(w io.Writer) (int, error) {
-    return fmt.Fprint(w, p.RenderedPage)
+func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
+    path := config.ServerConfig.GetTemplateFilePath(baseTemplateName)
+    t := template.Must(template.ParseFiles(path))
+    wrappedPage := fmt.Sprintf(wrappedContent, p.Preamble.Title, p.RenderedPage)
+    t = template.Must(t.Parse(wrappedPage))
+    util.Check(t.ExecuteTemplate(w, baseTemplateName, config.Assets))
 }
 
 type PostPreamble struct {
@@ -72,3 +77,10 @@ func extractPreamble(markdownContent string) (*PostPreamble, string, error) {
     trimmed := strings.Trim(strings.ReplaceAll(postContentOnly, sep, ""), "\n\t ")
     return &preamble, trimmed, nil
 }
+
+const wrappedContent = `
+{{ define "title" }}%s{{ end }}
+{{ define "content" }}
+%s
+{{ end }}
+`
