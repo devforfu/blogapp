@@ -34,7 +34,7 @@ An example of post content that goes right after *preamble*.
 
     markdownFileContent := fmt.Sprintf("```json%s```%s", jsonPreamble, postContent)
 
-    preamble, postWithoutPreamble, err := ExtractPreamble(markdownFileContent)
+    preamble, postWithoutPreamble, err := extractPreamble(markdownFileContent)
 
     assert.Nil(t, err)
     assert.NotNil(t, preamble)

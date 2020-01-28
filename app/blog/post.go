@@ -37,7 +37,7 @@ func NewPost(ref *PostReference) (*Post, error) {
     path := filepath.Join(config.ServerConfig.PagesRoot, ref.Filename())
     markdownContent, err := ioutil.ReadFile(path)
     if err != nil { return nil, err }
-    preamble, post, err := ExtractPreamble(string(markdownContent))
+    preamble, post, err := extractPreamble(string(markdownContent))
     if err != nil { return nil, err }
     rendered := blackfriday.Run([]byte(post))
     return &Post{Preamble:preamble, RenderedPage:string(rendered)}, nil
@@ -55,7 +55,7 @@ type PostPreamble struct {
     Identifier int   `json:"identifier"`
 }
 
-func ExtractPreamble(markdownContent string) (*PostPreamble, string, error) {
+func extractPreamble(markdownContent string) (*PostPreamble, string, error) {
     sep := config.ServerConfig.PostPreambleSeparator
     index := strings.Index(markdownContent, sep)
     if index == -1 {
