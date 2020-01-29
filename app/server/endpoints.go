@@ -13,15 +13,6 @@ import (
     "strconv"
 )
 
-type templateData struct {
-    Assets config.Assets
-    Payload interface{}
-}
-
-func newTemplateData(payload interface{}) *templateData {
-    return &templateData{Assets:config.DefaultAssets, Payload:payload}
-}
-
 func Home(w http.ResponseWriter, req *http.Request) {
    mainPath := config.ServerConfig.GetTemplateFilePath("main")
    homePath := config.ServerConfig.GetTemplateFilePath("home")
@@ -30,7 +21,12 @@ func Home(w http.ResponseWriter, req *http.Request) {
 }
 
 func Posts(w http.ResponseWriter, req *http.Request) {
-    http.NotFound(w, req)
+    _ = blog.ListPosts()
+    //sort.Sort(posts)
+    //mainPath := config.ServerConfig.GetTemplateFilePath("main")
+    //listPath := config.ServerConfig.GetTemplateFilePath("posts")
+    //t := template.Must(template.ParseFiles(mainPath, listPath))
+    //util.Check(t.ExecuteTemplate(w, "main", newTemplateData(posts)))
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
@@ -85,3 +81,13 @@ func parseReference(r *http.Request) (ref *blog.PostReference, err error) {
         return ref, nil
     }
 }
+
+type templateData struct {
+    Assets config.Assets
+    Payload interface{}
+}
+
+func newTemplateData(payload interface{}) *templateData {
+    return &templateData{Assets:config.DefaultAssets, Payload:payload}
+}
+
