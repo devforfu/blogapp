@@ -8,13 +8,15 @@ import (
     "path/filepath"
 )
 
-const defaultPreambleString = "<!--preamble-->"
+const defaultPreambleSeparator = "<!--preamble-->"
+const defaultDigestSeparator = "<!--more-->"
 
 type Config struct {
     PagesRoot string
     TemplatesRoot string
     LoggingLevel logrus.Level
     PostPreambleSeparator string
+    PostDigestSeparator string
 }
 
 var ServerConfig *Config
@@ -35,10 +37,11 @@ func FromEnvironment() *Config {
     default:      loggingLevel = log.DebugLevel
     }
     return &Config{
-        PagesRoot:pagesRoot,
-        TemplatesRoot:templatesRoot,
-        LoggingLevel:loggingLevel,
-        PostPreambleSeparator:defaultPreambleString}
+        PagesRoot:             pagesRoot,
+        TemplatesRoot:         templatesRoot,
+        LoggingLevel:          loggingLevel,
+        PostPreambleSeparator: defaultPreambleSeparator,
+        PostDigestSeparator:defaultDigestSeparator}
 }
 
 func (c *Config) GetPostFilePath(name string) string {

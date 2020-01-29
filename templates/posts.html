@@ -1,0 +1,8 @@
+{{ define "title" }}Posts{{ end }}
+{{ define "content "}}
+    <ul>
+        {{ range .Payload }}
+            <li>{{ .Digest }}</li>
+        {{ end }}
+    </ul>
+{{ end }}
