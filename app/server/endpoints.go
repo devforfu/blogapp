@@ -17,7 +17,11 @@ func Home(w http.ResponseWriter, req *http.Request) {
     mainPath := config.ServerConfig.GetTemplateFilePath("main")
     homePath := config.ServerConfig.GetTemplateFilePath("home")
     t, _ := template.ParseFiles(mainPath, homePath)
-    util.Check(t.ExecuteTemplate(w, "main", config.Assets))
+    util.Check(t.ExecuteTemplate(w, "main", config.DefaultAssets))
+}
+
+func Posts(w http.ResponseWriter, req *http.Request) {
+    http.NotFound(w, req)
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
@@ -32,13 +36,13 @@ func BlogPage(w http.ResponseWriter, req *http.Request) {
     }
 
     var getPost = func(ref *blog.PostReference) *blog.Post {
-       key := ref.Filename()
-       post := cache.Default.Get(key)
-       if post != nil { return post }
-       post, err := blog.NewPost(ref)
-       if notFoundOnError(err) { return nil }
-       cache.Default.Set(key, post)
-       return post
+        key := ref.Filename()
+        post := cache.Default.Get(key)
+        if post != nil { return post }
+        post, err := blog.NewPost(ref)
+        if notFoundOnError(err) { return nil }
+        cache.Default.Set(key, post)
+        return post
     }
 
     ref, err := parseReference(req)
