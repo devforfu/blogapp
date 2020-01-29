@@ -49,7 +49,14 @@ func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
     t := template.Must(template.ParseFiles(path))
     wrappedPage := fmt.Sprintf(wrappedContent, p.Preamble.Title, p.RenderedPage)
     t = template.Must(t.Parse(wrappedPage))
-    util.Check(t.ExecuteTemplate(w, baseTemplateName, config.Assets))
+    util.Check(t.ExecuteTemplate(w, baseTemplateName, config.DefaultAssets))
+}
+
+func (p *Post) Digest() string {
+    index := strings.Index(p.RenderedPage, config.ServerConfig.PostDigestSeparator)
+    if index == -1 { return "" }
+    digest := p.RenderedPage[:index]
+    return digest
 }
 
 type PostPreamble struct {
