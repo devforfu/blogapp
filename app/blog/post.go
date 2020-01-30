@@ -12,6 +12,7 @@ import (
     "path/filepath"
     "regexp"
     "strings"
+    "time"
 )
 
 // PostReference keeps information that helps map URL suffix to post file name.
@@ -23,7 +24,7 @@ type PostReference struct {
 // Filename converts publication date and post name into a name of Markdown
 // file with post content.
 func (ref *PostReference) Filename() string {
-    filename := fmt.Sprintf("%d_%d_%d_%s.md", ref.Year, ref.Month, ref.Day, ref.Name)
+    filename := fmt.Sprintf("%d_%02d_%02d_%s.md", ref.Year, ref.Month, ref.Day, ref.Name)
     filename = strings.ReplaceAll(strings.ToLower(filename), "-", "_")
     return filename
 }
@@ -31,6 +32,7 @@ func (ref *PostReference) Filename() string {
 // Post represent a single post content.
 type Post struct {
     Preamble *PostPreamble
+    PublicationDate time.Time
     RenderedPage string
 }
 
@@ -41,7 +43,8 @@ func NewPost(ref *PostReference) (*Post, error) {
     preamble, post, err := extractPreamble(string(markdownContent))
     if err != nil { return nil, err }
     rendered := blackfriday.Run([]byte(post))
-    return &Post{Preamble:preamble, RenderedPage:string(rendered)}, nil
+    published := time.Date(ref.Year, time.Month(ref.Month), ref.Day, 0, 0,0,0, time.UTC)
+    return &Post{Preamble:preamble, RenderedPage:string(rendered), PublicationDate:published}, nil
 }
 
 func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
@@ -58,6 +61,11 @@ func (p *Post) Digest() string {
     digest := p.RenderedPage[:index]
     return digest
 }
+
+type PostsList []*Post
+func (arr PostsList) Len() int           { return len(arr) }
+func (arr PostsList) Less(i, j int) bool { return arr[i].PublicationDate.Unix() < arr[j].PublicationDate.Unix() }
+func (arr PostsList) Swap(i, j int)      { arr[i], arr[j] = arr[j], arr[i] }
 
 type PostPreamble struct {
     Category string  `json:"category"`

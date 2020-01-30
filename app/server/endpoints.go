@@ -10,6 +10,7 @@ import (
     log "github.com/sirupsen/logrus"
     "html/template"
     "net/http"
+    "sort"
     "strconv"
 )
 
@@ -21,7 +22,11 @@ func Home(w http.ResponseWriter, req *http.Request) {
 }
 
 func Posts(w http.ResponseWriter, req *http.Request) {
-    http.NotFound(w, req)
+    posts := blog.ListPosts()
+    sort.Sort(sort.Reverse(posts))
+    for _, post := range posts {
+        log.Debugf("post pub date: %v", post.PublicationDate)
+    }
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
