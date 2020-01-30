@@ -15,18 +15,16 @@ import (
 )
 
 func Home(w http.ResponseWriter, req *http.Request) {
-    mainPath := config.ServerConfig.GetTemplateFilePath("main")
-    homePath := config.ServerConfig.GetTemplateFilePath("home")
-    t, _ := template.ParseFiles(mainPath, homePath)
+    t := parseTemplates("main", "home")
     util.Check(t.ExecuteTemplate(w, "main", config.DefaultAssets))
 }
 
 func Posts(w http.ResponseWriter, req *http.Request) {
     posts := blog.ListPosts()
     sort.Sort(sort.Reverse(posts))
-    for _, post := range posts {
-        log.Debugf("post pub date: %v", post.PublicationDate)
-    }
+    t := parseTemplates("main", "posts")
+    data := makeTemplateData(posts)
+    util.Check(t.ExecuteTemplate(w, "main", data))
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
@@ -80,4 +78,21 @@ func parseReference(r *http.Request) (ref *blog.PostReference, err error) {
             Name:name}
         return ref, nil
     }
+}
+
+func parseTemplates(names ...string) *template.Template {
+    filePaths := make([]string, 0)
+    for _, name := range names {
+        filePaths = append(filePaths, config.ServerConfig.GetTemplateFilePath(name))
+    }
+    return template.Must(template.ParseFiles(filePaths...))
+}
+
+type templateData struct {
+    Assets config.Assets
+    Payload interface{}
+}
+
+func makeTemplateData(payload interface{}) *templateData {
+    return &templateData{Assets:config.DefaultAssets, Payload:payload}
 }
