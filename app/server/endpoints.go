@@ -22,8 +22,11 @@ func Home(w http.ResponseWriter, req *http.Request) {
 func Posts(w http.ResponseWriter, req *http.Request) {
     posts := blog.ListPosts()
     sort.Sort(sort.Reverse(posts))
-    t := parseTemplates("main", "posts")
-    data := makeTemplateData(posts)
+    t := parseTemplates( "posts", "main")
+    data := map[string]interface{} {
+        "Assets":config.DefaultAssets,
+        "Posts":posts,
+    }
     util.Check(t.ExecuteTemplate(w, "main", data))
 }
 
@@ -86,13 +89,4 @@ func parseTemplates(names ...string) *template.Template {
         filePaths = append(filePaths, config.ServerConfig.GetTemplateFilePath(name))
     }
     return template.Must(template.ParseFiles(filePaths...))
-}
-
-type templateData struct {
-    Assets config.Assets
-    Payload interface{}
-}
-
-func makeTemplateData(payload interface{}) *templateData {
-    return &templateData{Assets:config.DefaultAssets, Payload:payload}
 }
