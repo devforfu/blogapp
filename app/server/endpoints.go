@@ -16,7 +16,8 @@ import (
 
 func Home(w http.ResponseWriter, req *http.Request) {
     t := parseTemplates("main", "home")
-    util.Check(t.ExecuteTemplate(w, "main", config.DefaultAssets))
+    data := map[string]interface{}{"Assets": config.DefaultAssets}
+    util.Check(t.ExecuteTemplate(w, "main", data))
 }
 
 func Posts(w http.ResponseWriter, req *http.Request) {

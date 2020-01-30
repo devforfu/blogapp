@@ -33,7 +33,7 @@ func (ref *PostReference) Filename() string {
 type Post struct {
     Preamble *PostPreamble
     PublicationDate time.Time
-    RenderedPage string
+    RenderedPage template.HTML
 }
 
 func NewPost(ref *PostReference) (*Post, error) {
@@ -44,7 +44,7 @@ func NewPost(ref *PostReference) (*Post, error) {
     if err != nil { return nil, err }
     rendered := blackfriday.Run([]byte(post))
     published := time.Date(ref.Year, time.Month(ref.Month), ref.Day, 0, 0,0,0, time.UTC)
-    return &Post{Preamble:preamble, RenderedPage:string(rendered), PublicationDate:published}, nil
+    return &Post{Preamble:preamble, RenderedPage:template.HTML(rendered), PublicationDate:published}, nil
 }
 
 func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
@@ -55,11 +55,11 @@ func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
     util.Check(t.ExecuteTemplate(w, baseTemplateName, config.DefaultAssets))
 }
 
-func (p *Post) Digest() string {
-    index := strings.Index(p.RenderedPage, config.ServerConfig.PostDigestSeparator)
+func (p *Post) Digest() template.HTML {
+    index := strings.Index(string(p.RenderedPage), config.ServerConfig.PostDigestSeparator)
     if index == -1 { return "" }
     digest := p.RenderedPage[:index]
-    return digest
+    return template.HTML(digest)
 }
 
 type PostsList []*Post
