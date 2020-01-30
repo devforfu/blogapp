@@ -1,9 +1,10 @@
 {{ define "title" }}Posts{{ end }}
 {{ define "content" }}
     <ul>
-        <p>List of posts</p>
         {{ range .Posts }}
-            <li>{{ .Digest }}</li>
+        <li>
+        {{ .Digest }}
+        </li>
         {{ end }}
     </ul>
 {{ end }}
