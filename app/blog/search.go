@@ -9,14 +9,12 @@ import (
 )
 
 func ListPosts() PostsList {
-	r := util.MustRegexpMap(mdFilePattern)
-
 	posts := make(PostsList, 0)
 	var parseFiles = func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			log.Debugf("failed to parse dir: %s", err)
 		} else {
-			if match := r.Search(path); len(match) > 0 {
+			if match := config.RegexMDFile.Search(path); len(match) > 0 {
 				ref := &PostReference{
 					Year:util.MustInt(match["year"]),
 					Month:util.MustInt(match["month"]),
@@ -36,5 +34,3 @@ func ListPosts() PostsList {
 	util.Check(filepath.Walk(config.ServerConfig.PagesRoot, parseFiles))
 	return posts
 }
-
-const mdFilePattern = `(?P<year>\d{4})_(?P<month>\d{2})_(?P<day>\d{2})_(?P<name>[\w\W]+)\.md$`

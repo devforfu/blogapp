@@ -10,7 +10,6 @@ import (
     "io"
     "io/ioutil"
     "path/filepath"
-    "regexp"
     "strings"
     "time"
 )
@@ -56,11 +55,10 @@ func NewPost(ref *PostReference) (*Post, error) {
 
     rendered := blackfriday.Run([]byte(pageContent))
     published := util.DateUTC(ref.Year, ref.Month, ref.Day)
-    r := util.MustRegexpMap(URLPattern)
 
     var logo string
     var isForeign bool
-    if match := r.Search(ref.URL()); len(match) > 0 {
+    if match := config.RegexURL.Search(ref.URL()); len(match) > 0 {
         logo = match["origin"]
         isForeign = true
     } else {
@@ -82,7 +80,7 @@ func NewPost(ref *PostReference) (*Post, error) {
 func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
     path := config.ServerConfig.GetTemplateFilePath(baseTemplateName)
     t := template.Must(template.ParseFiles(path))
-    wrappedPage := fmt.Sprintf(wrappedContent, p.Preamble.Title, p.RenderedPage)
+    wrappedPage := fmt.Sprintf(config.FormatWrappedPostContent, p.Preamble.Title, p.RenderedPage)
     t = template.Must(t.Parse(wrappedPage))
     data := map[string]interface{}{"Assets": config.DefaultAssets}
     util.Check(t.ExecuteTemplate(w, baseTemplateName, data))
@@ -96,7 +94,7 @@ func (p *Post) Digest() template.HTML {
 }
 
 func (p *Post) VerbosePublicationDate() string {
-    return p.PublicationDate.Format(VerboseDateFormat)
+    return p.PublicationDate.Format(config.FormatVerboseDate)
 }
 
 type PostsList []*Post
@@ -121,22 +119,10 @@ func extractPreamble(markdownContent string) (*PostPreamble, string, error) {
 
     jsonPreambleOnly := markdownContent[:index]
     postContentOnly := markdownContent[index:]
-    reg := regexp.MustCompile("^```json\n(?P<preamble>[\\w\\W]+)```")
-    matched := reg.FindStringSubmatch(jsonPreambleOnly)
+    matched := config.RegexJSONPreamble.Search(jsonPreambleOnly)["preamble"]
 
     var preamble PostPreamble
-    util.Check(json.Unmarshal([]byte(matched[1]), &preamble))
+    util.Check(json.Unmarshal([]byte(matched), &preamble))
     trimmed := strings.Trim(strings.ReplaceAll(postContentOnly, sep, ""), "\n\t ")
     return &preamble, trimmed, nil
 }
-
-const wrappedContent = `
-{{ define "title" }}%s{{ end }}
-{{ define "content" }}
-%s
-{{ end }}
-`
-
-const URLPattern = `https?:\/\/(?P<origin>[\w]+)\.(com|org|io|ru)\/[\w\W]*`
-
-const VerboseDateFormat = "Jan 02, 2006"
