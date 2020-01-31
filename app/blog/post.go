@@ -21,6 +21,12 @@ type PostReference struct {
     Name string
 }
 
+func (ref *PostReference) URL() string {
+    url := fmt.Sprintf("/post/%d/%02d/%02d/%s", ref.Year, ref.Month, ref.Day, ref.Name)
+    url = strings.ReplaceAll(strings.ToLower(url), "_", "-")
+    return url
+}
+
 // Filename converts publication date and post name into a name of Markdown
 // file with post content.
 func (ref *PostReference) Filename() string {
@@ -34,17 +40,43 @@ type Post struct {
     Preamble *PostPreamble
     PublicationDate time.Time
     RenderedPage template.HTML
+    URL string
+    IsForeign bool
+    Logo string
 }
 
 func NewPost(ref *PostReference) (*Post, error) {
     path := filepath.Join(config.ServerConfig.PagesRoot, ref.Filename())
+
     markdownContent, err := ioutil.ReadFile(path)
     if err != nil { return nil, err }
-    preamble, post, err := extractPreamble(string(markdownContent))
+
+    preamble, pageContent, err := extractPreamble(string(markdownContent))
     if err != nil { return nil, err }
-    rendered := blackfriday.Run([]byte(post))
-    published := time.Date(ref.Year, time.Month(ref.Month), ref.Day, 0, 0,0,0, time.UTC)
-    return &Post{Preamble:preamble, RenderedPage:template.HTML(rendered), PublicationDate:published}, nil
+
+    rendered := blackfriday.Run([]byte(pageContent))
+    published := util.DateUTC(ref.Year, ref.Month, ref.Day)
+    r := util.MustRegexpMap(URLPattern)
+
+    var logo string
+    var isForeign bool
+    if match := r.Search(ref.URL()); len(match) > 0 {
+        logo = match["origin"]
+        isForeign = true
+    } else {
+        logo = ""
+        isForeign = false
+    }
+
+    post := &Post{
+        Preamble:preamble,
+        RenderedPage:template.HTML(rendered),
+        PublicationDate:published,
+        URL:ref.URL(),
+        IsForeign:isForeign,
+        Logo:logo}
+
+    return post, nil
 }
 
 func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
@@ -52,7 +84,8 @@ func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
     t := template.Must(template.ParseFiles(path))
     wrappedPage := fmt.Sprintf(wrappedContent, p.Preamble.Title, p.RenderedPage)
     t = template.Must(t.Parse(wrappedPage))
-    util.Check(t.ExecuteTemplate(w, baseTemplateName, config.DefaultAssets))
+    data := map[string]interface{}{"Assets": config.DefaultAssets}
+    util.Check(t.ExecuteTemplate(w, baseTemplateName, data))
 }
 
 func (p *Post) Digest() template.HTML {
@@ -60,6 +93,10 @@ func (p *Post) Digest() template.HTML {
     if index == -1 { return "" }
     digest := p.RenderedPage[:index]
     return template.HTML(digest)
+}
+
+func (p *Post) VerbosePublicationDate() string {
+    return p.PublicationDate.Format(VerboseDateFormat)
 }
 
 type PostsList []*Post
@@ -99,3 +136,7 @@ const wrappedContent = `
 %s
 {{ end }}
 `
+
+const URLPattern = `https?:\/\/(?P<origin>[\w]+)\.(com|org|io|ru)\/[\w\W]*`
+
+const VerboseDateFormat = "Jan 02, 2006"

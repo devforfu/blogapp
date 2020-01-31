@@ -1,0 +1,12 @@
+/* ------------------- */
+/* Posts Preview Cards */
+/* ------------------- */
+
+.post {
+    background: white;
+}
+
+.muted-link {
+    color: inherit;
+    text-decoration: none;
+}

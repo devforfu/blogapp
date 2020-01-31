@@ -22,5 +22,6 @@ var DefaultAssets = Assets{
     Styles: map[string]string{
         "Reset": css("reset.css"),
         "PageHeader": css("page_header.css"),
+        "PostsPreviewCards": css("posts.css"),
     },
 }

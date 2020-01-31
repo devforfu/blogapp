@@ -9,7 +9,7 @@ import (
 )
 
 func ListPosts() PostsList {
-	r := util.MustRegexMap(mdFilePattern)
+	r := util.MustRegexpMap(mdFilePattern)
 
 	posts := make(PostsList, 0)
 	var parseFiles = func(path string, info os.FileInfo, err error) error {

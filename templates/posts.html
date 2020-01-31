@@ -2,7 +2,8 @@
 {{ define "content" }}
 <div class="container">
     {{ range .Posts }}
-    <div class="post" href="{{.URL}}" foreign="{{.IsForeign}}">
+    <a class="muted-link" href="{{.URL}}">
+    <div class="post" foreign="{{.IsForeign}}">
         <div class="post-block">
             {{.Digest}}
         </div>
@@ -15,6 +16,7 @@
             </div>
         </div>
     </div>
+    </a>
     {{ end }}
 </div>
 {{ end }}
