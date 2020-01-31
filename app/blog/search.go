@@ -8,23 +8,26 @@ import (
 	"path/filepath"
 )
 
-func ListPosts() []*Post {
+func ListPosts() PostsList {
 	r := util.MustRegexMap(mdFilePattern)
 
-	posts := make([]*Post, 0)
+	posts := make(PostsList, 0)
 	var parseFiles = func(path string, info os.FileInfo, err error) error {
-		if err != nil { return err }
-		if match := r.Search(path); len(match) > 0 {
-			ref := &PostReference{
-				Year:util.MustInt(match["year"]),
-				Month:util.MustInt(match["month"]),
-				Day:util.MustInt(match["day"]),
-				Name:match["name"]}
-			post, err := NewPost(ref)
-			if err != nil {
-				log.Warnf("failed to load the post: %s", path)
-			} else {
-				posts = append(posts, post)
+		if err != nil {
+			log.Debugf("failed to parse dir: %s", err)
+		} else {
+			if match := r.Search(path); len(match) > 0 {
+				ref := &PostReference{
+					Year:util.MustInt(match["year"]),
+					Month:util.MustInt(match["month"]),
+					Day:util.MustInt(match["day"]),
+					Name:match["name"]}
+				post, err := NewPost(ref)
+				if err != nil {
+					log.Warnf("failed to create post: %s", err)
+				} else {
+					posts = append(posts, post)
+				}
 			}
 		}
 		return nil

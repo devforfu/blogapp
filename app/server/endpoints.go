@@ -10,19 +10,25 @@ import (
     log "github.com/sirupsen/logrus"
     "html/template"
     "net/http"
+    "sort"
     "strconv"
 )
 
 func Home(w http.ResponseWriter, req *http.Request) {
-    mainPath := config.ServerConfig.GetTemplateFilePath("main")
-    homePath := config.ServerConfig.GetTemplateFilePath("home")
-    t, _ := template.ParseFiles(mainPath, homePath)
-    util.Check(t.ExecuteTemplate(w, "main", config.DefaultAssets))
+    t := parseTemplates("main", "home")
+    data := map[string]interface{}{"Assets": config.DefaultAssets}
+    util.Check(t.ExecuteTemplate(w, "main", data))
 }
 
 func Posts(w http.ResponseWriter, req *http.Request) {
-    _ = blog.ListPosts()
-    http.NotFound(w, req)
+    posts := blog.ListPosts()
+    sort.Sort(sort.Reverse(posts))
+    t := parseTemplates( "posts", "main")
+    data := map[string]interface{} {
+        "Assets":config.DefaultAssets,
+        "Posts":posts,
+    }
+    util.Check(t.ExecuteTemplate(w, "main", data))
 }
 
 func BlogPage(w http.ResponseWriter, req *http.Request) {
@@ -76,4 +82,12 @@ func parseReference(r *http.Request) (ref *blog.PostReference, err error) {
             Name:name}
         return ref, nil
     }
+}
+
+func parseTemplates(names ...string) *template.Template {
+    filePaths := make([]string, 0)
+    for _, name := range names {
+        filePaths = append(filePaths, config.ServerConfig.GetTemplateFilePath(name))
+    }
+    return template.Must(template.ParseFiles(filePaths...))
 }

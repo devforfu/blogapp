@@ -1,8 +1,20 @@
 {{ define "title" }}Posts{{ end }}
-{{ define "content "}}
-    <ul>
-        {{ range .Payload }}
-            <li>{{ .Digest }}</li>
+{{ define "content" }}
+<div class="container">
+    {{ range .Posts }}
+    <div class="post" href="{{.URL}}" foreign="{{.IsForeign}}">
+        <div class="post-block">
+            {{.Digest}}
+        </div>
+        <div class="post-footer text-muted">
+        {{ if .IsForeign }}
+            <img src="{{.Logo}}" style="display: inline; float: left;" height="30">
         {{ end }}
-    </ul>
+            <div class="post-timestamp">
+                Publication Date: {{.VerbosePublicationDate}}
+            </div>
+        </div>
+    </div>
+    {{ end }}
+</div>
 {{ end }}
