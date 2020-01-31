@@ -21,6 +21,7 @@ func Home(w http.ResponseWriter, req *http.Request) {
 }
 
 func Posts(w http.ResponseWriter, req *http.Request) {
+    _ = blog.ListPosts()
     http.NotFound(w, req)
 }
 
