@@ -1,12 +1,14 @@
+```json
+{
+  "category": "blog",
+  "title": "Generators-Based Data Processing Pipeline",
+  "tags": ["python", "generator", "coroutine", "numpy"],
+  "image": "generators.png"
+}
+```
 ---
-layout: post
-category: blog
-permalink: /:categories/:year/:month/:day/:title
-title: "Generators-Based Data Processing Pipeline"
-tags: ['python', 'generator', 'yield', 'coroutine', 'numpy']
-image: "generators.png"
-identifier: 2
----
+
+<!--preamble-->
 
 Generators represent a quite powerful conception of gradually consumed (and probably indefinite)
 streams of data. Almost every **Python 3.x** developer has encountered generators

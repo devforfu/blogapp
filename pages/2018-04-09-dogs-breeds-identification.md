@@ -1,12 +1,14 @@
----
-layout: 'post'
-category: 'blog'
-title: "Dogs Breeds Classification with Keras"
-tags: ['python', 'keras', 'classification', 'jupyter']
-image: "dog.png"
-foreign_url: https://medium.com/@iliazaitsev/dogs-breeds-classification-with-keras-b1fd0ab5e49c
-foreign_logo: "medium.png"
----
+```json
+{
+  "category": "blog",
+  "title": "Dogs Breeds Classification with Keras",
+  "tags": ["python", "keras", "classification", "jupyter"],
+  "image": "dog.png",
+  "foreign_url": "https://medium.com/@iliazaitsev/dogs-breeds-classification-with-keras-b1fd0ab5e49c"
+}
+```
+
+<!--preamble-->
 
 Modern deep learning architectures show quite good results in various fields of
 artificial intelligence. One of them is images classification. In this post,
