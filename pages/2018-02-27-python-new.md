@@ -1,12 +1,13 @@
----
-layout: post
-category: blog
-permalink: /:categories/:year/:month/:day/:title
-title: "Using Python __new__ Method to Dynamically Switch Class Implementations"
-tags: ['python', 'inheritance', 'magic', 'metaclass']
-image: "new.png"
-identifier: 1
----
+```json
+{
+  "category": "blog", 
+  "title": "Using Python's __new__ Method to Dynamically Switch Class Implementations",
+  "tags": ["python", "magic", "meta-class"],
+  "image": "new.png"
+}
+```
+
+<!--preamble-->
 
 Each Python object has a set magic of methods which could be overridden to
 customize instance creation and behavior. One of widely used methods is

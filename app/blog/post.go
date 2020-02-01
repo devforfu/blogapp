@@ -22,16 +22,14 @@ type PostReference struct {
 
 func (ref *PostReference) URL() string {
     url := fmt.Sprintf("/post/%d/%02d/%02d/%s", ref.Year, ref.Month, ref.Day, ref.Name)
-    url = strings.ReplaceAll(strings.ToLower(url), "_", "-")
-    return url
+    return strings.ToLower(url)
 }
 
 // Filename converts publication date and post name into a name of Markdown
 // file with post content.
 func (ref *PostReference) Filename() string {
-    filename := fmt.Sprintf("%d_%02d_%02d_%s.md", ref.Year, ref.Month, ref.Day, ref.Name)
-    filename = strings.ReplaceAll(strings.ToLower(filename), "-", "_")
-    return filename
+    filename := fmt.Sprintf("%d-%02d-%02d-%s.md", ref.Year, ref.Month, ref.Day, ref.Name)
+    return strings.ToLower(filename)
 }
 
 // Post represent a single post content.
