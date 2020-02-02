@@ -1,12 +1,14 @@
----
-layout: 'post'
-category: 'blog'
-title: "Building Simple Recommendation System with PyTorch"
-tags: ['python', 'ensemble', 'trees', 'numpy']
-image: "embeddings.png"
-foreign_url: https://medium.com/coinmonks/how-to-implement-a-recommendation-system-with-deep-learning-and-pytorch-2d40476590f9
-foreign_logo: "medium.png"
----
+```json
+{
+  "category": "blog", 
+  "title": "Building Simple Recommendation System with PyTorch",
+  "tags": ["python", "pytorch", "deep-learning"],
+  "image": "embeddings.png",
+  "foreign_url": "https://medium.com/coinmonks/how-to-implement-a-recommendation-system-with-deep-learning-and-pytorch-2d40476590f9"
+}
+```
+
+<!--preamble-->
 
 Recently I’ve started watching [fast.ai](http://course.fast.ai) lectures&mdash;a great
 online course on Deep Learning. In one of his lectures, the author

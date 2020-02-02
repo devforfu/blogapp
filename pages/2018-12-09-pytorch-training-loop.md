@@ -1,12 +1,14 @@
----
-layout: 'post'
-category: 'blog'
-title: "Deep Learning Model Training Loop"
-tags: ['python', 'pytorch', 'mnist', 'deep learning', 'design patterns']
-image: "loop.gif"
-foreign_url: https://towardsdatascience.com/deep-learning-model-training-loop-e41055a24b73
-foreign_logo: "medium.png"
----
+```json
+{
+  "category": "blog",
+  "title": "Deep Learning Model Training Loop",
+  "tags": ["python", "pytorch", "deep-learning", "design-patterns"],
+  "image": "loop.gif",
+  "foreign_url": "https://towardsdatascience.com/deep-learning-model-training-loop-e41055a24b73"
+}
+```
+
+<!--preamble-->
 
 The **PyTorch** is a fantastic and easy to use Deep Learning framework. It provides you
 with all the fundamental tools to build a machine learning model. It gives you CUDA-driven

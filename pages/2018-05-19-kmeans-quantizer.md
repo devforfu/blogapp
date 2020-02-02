@@ -1,12 +1,13 @@
----
-layout: post
-category: blog
-permalink: /:categories/:year/:month/:day/:title
-title: "Using K-Means Clustering to Quantize Dataset Samples (Part 1)"
-tags: ['python', 'kmeans', 'numpy']
-image: "kmeans.png"
-identifier: 3
----
+```json
+{
+  "category": "blog",
+  "title": "Using K-Means Clustering to Quantize Dataset Samples (Part 1)",
+  "tags": ["python", "algorithm", "numpy"],
+  "image": "kmeans.png"
+}
+```
+
+<!--preamble-->
 
 Clustering algorithms are used to analyze data in an unsupervised fashion, in
 cases when labels are not available or to get new insights about the dataset.

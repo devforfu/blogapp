@@ -1,14 +1,21 @@
----
-layout: post
-category: blog
-permalink: /:categories/:year/:month/:day/:title
-title: "How to Build a Flexible CLI with Standard Python Library"
-tags: ['python', 'argparse', 'cli']
-image: "cli.png"
-identifier: 5
----
+```json
+{
+  "category": "blog",
+  "title": "How to Build a Flexible CLI with Standard Python Library",
+  "tags": ["python", "cli"],
+  "image": "cli.png"
+}
+```
 
-The Python programming language is quite often used to write various CLI-based utilities and automation tools. There are plenty of third-party libraries that make this process very easy and straightforward. However, recently I've realized that very often I use the good old `argparse` when writing my snippets, and also there are lots of legacy code that utilizes this package. That's why I've decided to create a single reference point for myself showing how to use it. In this post, we are going to take a close look at the library and gradually build a simple CLI to generate plots with `matplotlib` library.
+<!--preamble-->
+
+The Python programming language is quite often used to write various CLI-based utilities and 
+automation tools. There are plenty of third-party libraries that make this process very easy and 
+straightforward. However, recently I've realized that very often I use the good old `argparse` when 
+writing my snippets, and also there are lots of legacy code that utilizes this package. That's 
+why I've decided to create a single reference point for myself showing how to use it. 
+In this post, we are going to take a close look at the library and gradually build a simple CLI to 
+generate plots with `matplotlib` library.
 
 <!--more-->
 

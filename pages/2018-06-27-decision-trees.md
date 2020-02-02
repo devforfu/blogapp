@@ -1,12 +1,13 @@
----
-layout: post
-category: blog
-permalink: /:categories/:year/:month/:day/:title
-title: "Classifying Quantized Dataset with Random Forest Classifier (Part 2)"
-tags: ['python', 'ensemble', 'trees', 'numpy']
-image: "decision_tree_2.png"
-identifier: 4
----
+```json
+{
+  "category": "blog",
+  "title": "Classifying Quantized Dataset with Random Forest Classifier (Part 2)",
+  "tags": ["python", "algorithms", "numpy"],
+  "image": "decision_tree_2.png"
+}
+```
+
+<!--preamble-->
 
 In this post, we're going to finish the work started in the previous one and
 eventually classify quantized version of

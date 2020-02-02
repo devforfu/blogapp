@@ -1,12 +1,14 @@
----
-layout: 'post'
-category: 'blog'
-title: "How to Fail a Coding Interview"
-tags: ['software development', 'coding skills']
-image: "fail.png"
-foreign_url: https://hackernoon.com/how-to-fail-a-coding-interview-8d02cb70225f
-foreign_logo: "medium.png"
----
+```json
+{
+  "category": "blog",
+  "title": "How to Fail a Coding Interview",
+  "tags": ["design-patterns", "coding-skills"],
+  "image": "fail.png",
+  "foreign_url": "https://hackernoon.com/how-to-fail-a-coding-interview-8d02cb70225f"
+}
+```
+
+<!--preamble-->
 
 Some time ago I attended to a coding interview for the position of Data Scientist
 at one start-up. I felt myself well-prepared and confident, practicing lots of
