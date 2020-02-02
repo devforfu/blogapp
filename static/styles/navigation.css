@@ -1,0 +1,38 @@
+/* ---------- */
+/* Navigation */
+/* ---------- */
+
+.nav ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    list-style: none;
+    background: #3c3c3c;
+    display: block;
+    width: 100%;
+}
+
+.nav li {
+    padding: 0;
+    display: inline-block;
+    width: 120px;
+    line-height: 50px;
+    font-size: 1.4em;
+    font-family: "Average", cursive;
+    margin: 0 -4px 0 0;
+}
+
+.nav a {
+    display: block;
+    color: whitesmoke;
+}
+
+.nav a:hover,
+.nav a.active {
+    background: darkorange;
+    color: ghostwhite;
+}
+
+.nav a, .nav a:hover {
+    text-decoration: none;
+}

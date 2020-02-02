@@ -1,0 +1,52 @@
+/* ----------- */
+/* Page Header */
+/* ----------- */
+
+.topmost {
+    height: 150px;
+    text-align: center;
+    position: relative;
+}
+
+.topmost .text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.topmost .title {
+    color: #303030;
+    font-size: 4em;
+    font-family: "Arvo", serif;
+    font-weight: bold;
+    line-height: 1em;
+    padding-top: 20px;
+}
+
+.topmost .subtitle {
+    color: #404040;
+    font-size: 1.2em;
+    font-family: "Ubuntu Mono", monospace;
+    padding-bottom: 20px;
+}
+
+/*.topmost .text, .topmost .image {*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
+
+/*.topmost .title {*/
+/*    padding-top: 20px;*/
+/*    font-size: 4em;*/
+/*    font-family: "Coda", cursive;*/
+/*    line-height: 1em;*/
+/*    color: ghostwhite;*/
+/*}*/
+
+/*.topmost .subtitle {*/
+/*    padding-bottom: 20px;*/
+/*    font-size: 1.2em;*/
+/*    font-family: "Space", monospace;*/
+/*    color: ghostwhite;*/
+/*}*/

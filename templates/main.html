@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ template "title" }}</title>
-    <link rel="stylesheet" href="{{.Assets.Styles.Reset}}">
-    <link rel="stylesheet" href="{{.Assets.Styles.PageHeader}}">
-    <link rel="stylesheet" href="{{.Assets.Styles.PostsPreviewCards}}">
+    {{ range $_, $href := .Assets.Styles}}
+    <link rel="stylesheet" href="{{$href}}">
+    {{ end }}
+    <link rel="stylesheet" href="{{.Assets.FontsURL}}">
     <style>
         .background {
             background: white url("{{.Assets.Images.TopHeaderBackground}}");
@@ -15,14 +16,19 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 <body>
-    <div class="topmost background">
-        <div class="image">
-            <img src="{{.Assets.Images.TopHeaderBackgroundOverlay}}" alt="image" width="1250">
-        </div>
+    <div class="topmost">
         <div class="text">
             <div class="title">Ilia Zaitsev</div>
-            <div class="subtitle">{Software Developer & AI Enthusiast}</div>
+            <div class="subtitle">{Machine Learning Engineer &amp; AI Enthusiast}</div>
         </div>
+    </div>
+    <div class="nav" id="nav-site-pages">
+        <ul>
+            <li class="blog"><a href="#">Posts</a></li>
+            <li class="resume"><a href="#">Resume</a></li>
+            <li class="projects"><a href="#">Projects</a></li>
+            <li class="about"><a href="/about">About</a></li>
+        </ul>
     </div>
     {{ template "content" . }}
     <script>

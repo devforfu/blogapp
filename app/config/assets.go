@@ -12,6 +12,7 @@ func css(name string) string   { return filepath.Join(root, "styles", name) }
 type Assets struct {
     Images map[string]string
     Styles map[string]string
+    FontsURL string
 }
 
 var DefaultAssets = Assets{
@@ -21,7 +22,9 @@ var DefaultAssets = Assets{
     },
     Styles: map[string]string{
         "Reset": css("reset.css"),
-        "PageHeader": css("page_header.css"),
+        "PageHeader": css("topmost_header.css"),
         "PostsPreviewCards": css("posts.css"),
+        "Navigation": css("navigation.css"),
     },
+    FontsURL: "https://fonts.googleapis.com/css?family=Abel|Average|Ubuntu|Ubuntu+Mono|Arvo:400,700&display=swap",
 }
