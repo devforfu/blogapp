@@ -19,12 +19,14 @@ var DefaultAssets = Assets{
     Images: map[string]string{
         "TopHeaderBackground": image("blueprint.png"),
         "TopHeaderBackgroundOverlay": image("writings.png"),
+        "Portrait": image("portrait.jpeg"),
     },
     Styles: map[string]string{
         "Reset": css("reset.css"),
         "PageHeader": css("topmost_header.css"),
         "PostsPreviewCards": css("posts.css"),
         "Navigation": css("navigation.css"),
+        "About": css("about.css"),
     },
-    FontsURL: "https://fonts.googleapis.com/css?family=Abel|Average|Ubuntu|Ubuntu+Mono|Arvo:400,700&display=swap",
+    FontsURL: "https://fonts.googleapis.com/css?family=Average|Ubuntu|Ubuntu+Mono&display=swap",
 }
