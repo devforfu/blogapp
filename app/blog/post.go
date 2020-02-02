@@ -38,8 +38,8 @@ type Post struct {
     PublicationDate time.Time
     RenderedPage template.HTML
     URL string
-    IsForeign bool
     Logo string
+    IsForeign bool
 }
 
 func NewPost(ref *PostReference) (*Post, error) {
@@ -51,24 +51,25 @@ func NewPost(ref *PostReference) (*Post, error) {
     preamble, pageContent, err := extractPreamble(string(markdownContent))
     if err != nil { return nil, err }
 
-    rendered := blackfriday.Run([]byte(pageContent))
-    published := util.DateUTC(ref.Year, ref.Month, ref.Day)
-
-    var logo string
-    var isForeign bool
-    if match := config.RegexURL.Search(ref.URL()); len(match) > 0 {
-        logo = match["origin"]
-        isForeign = true
+    var (
+        url, logo string
+        isForeign bool
+    )
+    if preamble.ForeignURL == "" {
+        url, logo, isForeign = ref.URL(), "", false
     } else {
-        logo = ""
-        isForeign = false
+        url = preamble.ForeignURL
+        logo =config.RegexURL.Search(url)["origin"]
+        isForeign = true
     }
 
+    rendered := blackfriday.Run([]byte(pageContent))
+    published := util.DateUTC(ref.Year, ref.Month, ref.Day)
     post := &Post{
         Preamble:preamble,
         RenderedPage:template.HTML(rendered),
         PublicationDate:published,
-        URL:ref.URL(),
+        URL:url,
         IsForeign:isForeign,
         Logo:logo}
 
@@ -101,11 +102,12 @@ func (arr PostsList) Less(i, j int) bool { return arr[i].PublicationDate.Unix() 
 func (arr PostsList) Swap(i, j int)      { arr[i], arr[j] = arr[j], arr[i] }
 
 type PostPreamble struct {
-    Category string  `json:"category"`
-    Title string     `json:"title"`
-    Tags []string    `json:"tags"`
-    ImageName string `json:"image"`
-    Identifier int   `json:"identifier"`
+    Category string   `json:"category"`
+    Title string      `json:"title"`
+    Tags []string     `json:"tags"`
+    ImageName string  `json:"image"`
+    ForeignURL string `json:"foreign_url"`
+    Identifier int    `json:"identifier"`
 }
 
 func extractPreamble(markdownContent string) (*PostPreamble, string, error) {
