@@ -19,7 +19,8 @@ var DefaultAssets = Assets{
     Images: map[string]string{
         "TopHeaderBackground": image("blueprint.png"),
         "TopHeaderBackgroundOverlay": image("writings.png"),
-        "Portrait": image("portrait.jpeg"),
+        "LogoMedium": image("logo/medium.png"),
+        "LogoTowardsdatascience": image("logo/medium.png"),
     },
     Styles: map[string]string{
         "Reset": css("reset.css"),
@@ -28,5 +29,5 @@ var DefaultAssets = Assets{
         "Navigation": css("navigation.css"),
         "About": css("about.css"),
     },
-    FontsURL: "https://fonts.googleapis.com/css?family=Average|Ubuntu|Ubuntu+Mono&display=swap",
+    FontsURL: "https://fonts.googleapis.com/css?family=Average|Quantico|Roboto|Oswald|Roboto+Slab:400,700|Ubuntu|Ubuntu+Mono&display=swap",
 }

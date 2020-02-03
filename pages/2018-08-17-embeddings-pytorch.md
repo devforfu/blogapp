@@ -10,7 +10,7 @@
 
 <!--preamble-->
 
-Recently I’ve started watching [fast.ai](http://course.fast.ai) lectures&mdash;a great
+Recently I’ve started watching [fast.ai](http://course.fast.ai) lectures --- a great
 online course on Deep Learning. In one of his lectures, the author
 discusses the building of a simple neural network based recommendation system
 with application to the MovieLens dataset. The lecture relies on

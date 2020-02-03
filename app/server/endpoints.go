@@ -31,15 +31,6 @@ func Posts(w http.ResponseWriter, req *http.Request) {
     util.Check(t.ExecuteTemplate(w, "main", data))
 }
 
-func About(w http.ResponseWriter, req *http.Request) {
-    //t := parseTemplates("about", "main")
-    //data := map[string]interface{}{"Assets": config.DefaultAssets}
-    //util.Check(t.ExecuteTemplate(w, "main", data))
-    t := parseTemplates("about")
-    data := map[string]interface{}{"Assets": config.DefaultAssets}
-    util.Check(t.ExecuteTemplate(w, "about.html", data))
-}
-
 func BlogPage(w http.ResponseWriter, req *http.Request) {
     var notFoundOnError = func(err error) bool {
         if err != nil {

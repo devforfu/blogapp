@@ -59,7 +59,7 @@ func NewPost(ref *PostReference) (*Post, error) {
         url, logo, isForeign = ref.URL(), "", false
     } else {
         url = preamble.ForeignURL
-        logo =config.RegexURL.Search(url)["origin"]
+        logo = config.RegexURL.Search(url)["origin"]
         isForeign = true
     }
 
@@ -71,7 +71,7 @@ func NewPost(ref *PostReference) (*Post, error) {
         PublicationDate:published,
         URL:url,
         IsForeign:isForeign,
-        Logo:logo}
+        Logo:fmt.Sprintf("Logo%s", strings.Title(logo))}
 
     return post, nil
 }
@@ -89,7 +89,7 @@ func (p *Post) Digest() template.HTML {
     index := strings.Index(string(p.RenderedPage), config.ServerConfig.PostDigestSeparator)
     if index == -1 { return "" }
     digest := p.RenderedPage[:index]
-    return template.HTML(digest)
+    return digest
 }
 
 func (p *Post) VerbosePublicationDate() string {

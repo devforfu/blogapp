@@ -7,6 +7,8 @@
     padding: 1em;
     border: 1px solid #404040;
     margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 .link-muted {
@@ -15,5 +17,20 @@
 }
 
 .post .post-digest {
-    font-family: Ubuntu, serif;
+    font-family: "Roboto", serif;
+}
+
+.post .post-title {
+    color: #414eb4;
+    font-size: 1.5em;
+    font-family: "Oswald", serif;
+}
+
+.post code {
+    border-radius: 4px;
+    padding: 1px;
+    margin: 1px;
+    background: #e3e3e3;
+    color: #3c3c3c;
+    border: lightgray solid 1px;
 }

@@ -101,7 +101,7 @@ The `argparse` addresses this issue with a specific keyword parameter called `ty
 
 <script src="https://gist.github.com/devforfu/bbdb24d107cd818e33e2477657ed6e38.js"></script>
 
-The critical difference from the previous snippet is lines **9** and **15**, as well as custom type functions defined at lines **54** and **69**. The functions take the single argument&mdash;string-typed parameter parsed from the command line. Then we verify that the parameter has a valid format, and convert it into an appropriate type. The `ArgumentTypeError` exception is raised when something goes wrong, and the parser reports about the issue.
+The critical difference from the previous snippet is lines **9** and **15**, as well as custom type functions defined at lines **54** and **69**. The functions take the single argument --- string-typed parameter parsed from the command line. Then we verify that the parameter has a valid format, and convert it into an appropriate type. The `ArgumentTypeError` exception is raised when something goes wrong, and the parser reports about the issue.
 
 ```Bash
 $ python typecheck.py -p 1 2 3 4 5 6
@@ -119,7 +119,7 @@ Great, now we have a parser that is aware of our domain-specific types and shows
 <hr class="with-margin">
 <h4 class="header" id="subcommands">Subcommands</h4>
 
-Now our plotter can only read the input from the terminal. It would be great to add support of additional input sources, for example&mdash;JSON files. We can define all rendering parameters within a single file instead of passing them as CLI parameters. The only parameter we need here is a path to the JSON file. However, in our current implementation, the `points` parameter is required, as soon as the renderer which reads its parameters from the terminal cannot do its work without at least point. We don't need this parameter in case of JSON. How can we make so that the parser can handle both these cases smoothly without any hacking with parameters? The answer is subcommands.
+Now our plotter can only read the input from the terminal. It would be great to add support of additional input sources, for example --- JSON files. We can define all rendering parameters within a single file instead of passing them as CLI parameters. The only parameter we need here is a path to the JSON file. However, in our current implementation, the `points` parameter is required, as soon as the renderer which reads its parameters from the terminal cannot do its work without at least point. We don't need this parameter in case of JSON. How can we make so that the parser can handle both these cases smoothly without any hacking with parameters? The answer is subcommands.
 
 The `argparse` allows you to build not only a single god-object like parser that includes every possible parameter but define _a hierarchy of parsers_ instead where each parser is only responsible for the set of arguments for relevant its command. The code says more than thousands of words. The below snippet shows how we can implement such a hierarchical parser.
 

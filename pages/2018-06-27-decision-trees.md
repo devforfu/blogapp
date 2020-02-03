@@ -16,7 +16,7 @@ There are many ways to classify datasets with numerical features, but
 Decision Tree is one of the most intuitively understandable ones and simple it
 its underlying implementation. We are going to build a _Decision Tree_
 classifier using **Numpy** library and generalize it to
-_Random Forest_ &mdash; an ensemble of randomly generated trees, which is
+_Random Forest_ --- an ensemble of randomly generated trees, which is
 less prone to data noise.
 
 <!--more-->

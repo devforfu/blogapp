@@ -80,7 +80,7 @@ $$
 I = \sum_{j = 1}^{K}{ \sum_{\substack{i = 1 \\ x_i \in C_j}}^{N}{ d(x_i, c_j)} }
 $$
 
-Where $$K$$ is a number of clusters, $$N$$ &mdash; a number of observations,
+Where $$K$$ is a number of clusters, $$N$$ --- a number of observations,
 $$C_j$$ is a set of observations belonging to cluster $$j$$ and $$c_j$$ is centroid
 of $$j$$th cluster. This measure of clustering quality which shows how close
 dataset observations are to the centers of their clusters.

@@ -21,7 +21,7 @@ which preprocesses images stored on external storage.
 
 <blockquote class="tip">
 <strong>Disclamer</strong>: This post is mostly about one specific use case of
-Python generators &mdash; to transform arrays of data passing them from one
+Python generators --- to transform arrays of data passing them from one
 coroutine to another. For more rigorous introduction into generators and
 coroutines please check links at the bottom of this page.
 </blockquote>
