@@ -3,8 +3,8 @@
 <div class="container">
     {{ range .Posts }}
     <div class="post">
-        <a class="muted-link" href="{{.URL}}">🔗 {{.Preamble.Title}}</a>
-        <div class="post-block">
+        <a class="post-title link-muted" href="{{.URL}}">🔗 {{.Preamble.Title}}</a>
+        <div class="post-digest">
             {{.Digest}}
         </div>
         <div class="post-footer text-muted">
