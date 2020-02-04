@@ -3,7 +3,7 @@
 /* ----------- */
 
 .topmost {
-    height: 150px;
+    height: 6em;
     text-align: center;
     position: relative;
 }
@@ -20,14 +20,14 @@
     font-family: Quantico, serif;
     font-weight: bold;
     line-height: 1em;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .topmost .subtitle {
     color: #404040;
     font-size: 1.2em;
     font-family: "Ubuntu Mono", monospace;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 /*.topmost .text, .topmost .image {*/
