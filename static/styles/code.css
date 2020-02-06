@@ -1,0 +1,36 @@
+code { background-color: #fde9ce }
+.prettyprint {
+    overflow-x: auto;
+    font-family: Monaco,Consolas,"Lucida Console",monospace;
+    background-color: #333;
+    padding: 1.5em;
+    font-size: .75em;
+    border: 0;
+    color: #e9e4e5;
+    line-height: 1.9em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+.prettyprint .pln { color: #e9e4e5 }
+.prettyprint .str { color: #bcd42a }
+.prettyprint .kwd { color: #4bb1b1 }
+.prettyprint .com { color: #888 }
+.prettyprint .typ { color: #ef7c61 }
+.prettyprint .lit { color: #bcd42a }
+.prettyprint .pun,
+.prettyprint .opn,
+.prettyprint .clo { color: #fff }
+.prettyprint .tag { color: #4bb1b1 }
+.prettyprint .atn { color: #ef7c61 }
+.prettyprint .atv { color: #bcd42a }
+.prettyprint .dec,
+.prettyprint .var { color: #606 }
+.prettyprint .fun { color: red }
+.prettyprint code {
+    font-family: Monaco,Consolas,"Lucida Console",monospace;
+    background-color: transparent;
+}

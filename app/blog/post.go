@@ -42,6 +42,11 @@ type Post struct {
     IsForeign bool
 }
 
+// TODO:
+//      split the post into smaller pieces and render with a proper template
+//      instead of string formatting how it is done now; there should be a
+//      "raw" page content and convenient access functions Digest and Content.
+//
 func NewPost(ref *PostReference) (*Post, error) {
     path := filepath.Join(config.ServerConfig.PagesRoot, ref.Filename())
 
@@ -79,7 +84,7 @@ func NewPost(ref *PostReference) (*Post, error) {
 func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
     path := config.ServerConfig.GetTemplateFilePath(baseTemplateName)
     t := template.Must(template.ParseFiles(path))
-    wrappedPage := fmt.Sprintf(config.FormatWrappedPostContent, p.Preamble.Title, p.RenderedPage)
+    wrappedPage := fmt.Sprintf(config.FormatWrappedPostContent, p.Preamble.Title, p.Preamble.Title, p.RenderedPage)
     t = template.Must(t.Parse(wrappedPage))
     data := map[string]interface{}{"Assets": config.DefaultAssets}
     util.Check(t.ExecuteTemplate(w, baseTemplateName, data))

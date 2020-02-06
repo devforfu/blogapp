@@ -20,7 +20,7 @@
     font-family: "Roboto", serif;
 }
 
-.post .post-title {
+.post .post-title, .post-page .post-title {
     color: #414eb4;
     font-size: 1.5em;
     font-family: "Oswald", serif;
@@ -33,4 +33,18 @@
     background: #e3e3e3;
     color: #3c3c3c;
     border: lightgray solid 1px;
+}
+
+/* ------------- */
+/* Posts content */
+/* ------------- */
+
+.post-page {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2%;
+}
+
+.post-page pre.prettify {
+    margin: 0;
 }

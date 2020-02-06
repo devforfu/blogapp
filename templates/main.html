@@ -13,9 +13,9 @@
             background: white url("{{.Assets.Images.TopHeaderBackground}}");
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="{{.Assets.JS.Main}}"></script>
 </head>
-<body>
+<body onload="setup()">
     <div class="topmost">
         <div class="text">
             <div class="title">Ilia Zaitsev</div>
@@ -37,6 +37,7 @@
         </ul>
     </div>
     {{ template "content" . }}
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script>
         function addSyntaxHighlight() {
             const items = document.getElementsByTagName("pre");
