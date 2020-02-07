@@ -37,6 +37,8 @@ function enumerateSections(selector = "h4.header") {
     let content = [];
     const postSectionHeaders = Array.from(document.querySelectorAll(selector));
 
+    // <span>&#183;</span><span>&#183;</span><span>&#183;</span>
+
     for (const [index, header] of postSectionHeaders.entries()) {
         const headerText = `[${index}] ${header.textContent}`;
         const contentEntry = {
@@ -46,7 +48,19 @@ function enumerateSections(selector = "h4.header") {
         content.push(contentEntry);
         header.innerHTML = '';
         header.appendChild(document.createTextNode(headerText));
+        header.parentNode.insertBefore(createSeparator(), header);
     }
 
     return content;
+}
+
+function createSeparator(nDots = 3) {
+    const div = document.createElement('div');
+    div.classList = 'dots';
+    for (let i = 0; i < nDots; i++) {
+        const span = document.createElement('span');
+        span.appendChild(document.createTextNode("·"));
+        div.appendChild(span);
+    }
+    return div;
 }

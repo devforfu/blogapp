@@ -5,17 +5,20 @@
     {{ range .Posts }}
     <div class="post">
         <a class="post-title link-muted" href="{{.URL}}">{{.Preamble.Title}}</a>
+        <div class="post-timestamp">
+            Publication Date: {{.VerbosePublicationDate}}
+        </div>
         <div class="post-digest">
             {{.Digest}}
         </div>
-        <div class="post-footer text-muted">
         {{ if .IsForeign }}
-            <img src="{{index $assets.Images .Logo}}" style="display: inline; float: left;" height="30">
+        <img class="post-foreign-logo" src="{{index $assets.Images .Logo}}" height="30">
         {{ end }}
-            <div class="post-timestamp">
-                Publication Date: {{.VerbosePublicationDate}}
-            </div>
-        </div>
+{{/*        <div class="post-footer text-muted">*/}}
+{{/*        {{ if .IsForeign }}*/}}
+{{/*            <img class="post-foreign-logo" src="{{index $assets.Images .Logo}}" height="30">*/}}
+{{/*        {{ end }}*/}}
+{{/*        </div>*/}}
     </div>
     {{ end }}
 </div>

@@ -1,7 +1,9 @@
 package config
 
 import (
+    "fmt"
     "path/filepath"
+    "strings"
 )
 
 var root = "/static"
@@ -16,6 +18,19 @@ type Assets struct {
     JS map[string]string
     FontsURL string
 }
+
+var googleFonts = strings.Join([]string{
+    "Average",
+    "Source+Serif+Pro:400,700",
+    "Quantico",
+    "Roboto",
+    "Oswald",
+    "Roboto+Slab:400,700",
+    "Ubuntu",
+    "Ubuntu+Mono",
+}, "|")
+
+var fontsURL = fmt.Sprintf("https://fonts.googleapis.com/css?family=%s&display=swap", googleFonts)
 
 var DefaultAssets = Assets{
     Images: map[string]string{
@@ -34,5 +49,5 @@ var DefaultAssets = Assets{
     JS: map[string]string {
         "Main": js("lib.js"),
     },
-    FontsURL: "https://fonts.googleapis.com/css?family=Average|Quantico|Roboto|Oswald|Roboto+Slab:400,700|Ubuntu|Ubuntu+Mono&display=swap",
+    FontsURL: fontsURL,
 }
