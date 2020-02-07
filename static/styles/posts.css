@@ -43,8 +43,26 @@
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 2%;
+    font-family: "Roboto", sans-serif;
 }
 
 .post-page pre.prettify {
     margin: 0;
+}
+
+.post-page .list-of-contents ul {
+    list-style: none;
+}
+
+.post-page a:hover {
+    color: #414eb4;
+}
+
+.post-page .list-of-contents .list-item-wrapper {
+    position: relative;
+    left: -40px;
+}
+
+.post-page .header {
+    font-family: Roboto, sans-serif;
 }

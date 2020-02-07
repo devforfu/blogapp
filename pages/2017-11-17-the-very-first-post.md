@@ -18,12 +18,12 @@ of performed actions in case if the setup system would ever require re-deploymen
 <!--more-->
 
 <div class="list-of-contents">
-    <h4>Post contents</h4>
+    <h3>Post contents</h3>
     <ul></ul>
 </div>
 
 <hr class="with-margin">
-<h4 class="header" id="video-driver">Optional Step: Prepare Bootable USB and Install OS</h4>
+<h3 class="header" id="video-driver">Optional Step: Prepare Bootable USB and Install OS</h3>
 
 Of course, the first step in deploying deep learning machine based on Ubuntu OS,
 you should install that operating system onto your computer. This step is thoroughly
@@ -35,7 +35,7 @@ host machine works under macOS, [the following tutorial](https://tutorials.ubunt
 describes how to create bootable stick.
 
 <hr class="with-margin">
-<h4 class="header" id="disable-ui">Disabling Graphical Interface and CLI Mode Preparations</h4>
+<h3 class="header" id="disable-ui">Disabling Graphical Interface and CLI Mode Preparations</h3>
 
 If desktop version of Ubuntu was installed, then by default the user will be
 logged into graphical mode. That is not what one would like to have if wants to use
@@ -99,7 +99,7 @@ $ reboot
 ```
 
 <hr class="with-margin">
-<h4 class="header" id="generate-ssh">Generate SSH Key and Upload to the Host</h4>
+<h3 class="header" id="generate-ssh">Generate SSH Key and Upload to the Host</h3>
 
 When you connect to your deep learning machine via SSH, each time you need to
 enter your credentials. To simplify this process a bit, you can generate public/private
@@ -121,7 +121,7 @@ like `ssh username@$192.186.0.10` without entering credentials or providing
 path to the key.
 
 <hr class="with-margin">
-<h4 class="header" id="anaconda">Installing Anaconda</h4>
+<h3 class="header" id="anaconda">Installing Anaconda</h3>
 
 When everything is prepared, we're going to install [Anancoda](https://www.anaconda.com/distribution/) Python's distribution. It is not required to use **Anaconda** to install TensorFlow or
 any other "scientific" Python package, but this package management system makes
@@ -142,7 +142,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 <hr class="with-margin">
-<h4 class="header" id="tf-and-cuda">Installing CUDA (+cuDNN) Drivers and TensorFlow</h4>
+<h3 class="header" id="tf-and-cuda">Installing CUDA (+cuDNN) Drivers and TensorFlow</h3>
 
 To run TensorFlow on GPU, CUDA driver and cuDNN libraries should be installed. All required
 software is available from [NVIDIA developers platform](https://developer.nvidia.com/deep-learning).

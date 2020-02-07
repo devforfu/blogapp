@@ -8,16 +8,23 @@ function setup() {
  * Creates contents list for a post if contents section is available.
  */
 function createContentsList() {
-    const sections = enumerateSections();
+    const sections = enumerateSections("h3.header");
     const contents = document.querySelector('.list-of-contents ul');
 
     for (const sectionDef of sections) {
+        const span = document.createElement('span');
+        span.classList = "list-item-wrapper";
+
         const anchorLink = document.createElement('a');
         anchorLink.href = `#${sectionDef['id']}`;
         anchorLink.appendChild(document.createTextNode(sectionDef['header']));
+        anchorLink.classList = "link-muted";
+        span.appendChild(anchorLink);
+
         const listItem = document.createElement('li');
         listItem.classList += " post-section-link list-unstyled";
-        listItem.appendChild(anchorLink);
+        listItem.appendChild(span);
+
         contents.appendChild(listItem);
     }
 }
