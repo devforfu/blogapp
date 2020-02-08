@@ -78,6 +78,10 @@
     margin: 0;
 }
 
+.post-page .post-title {
+    text-align: center;
+}
+
 .post-page .list-of-contents ul {
     list-style: none;
 }
@@ -100,4 +104,19 @@
     display: block;
     width: 100%;
     text-align: center;
+}
+
+.post-page blockquote {
+    margin: 0;
+    border-left: 5px solid;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.post-page blockquote.warning {
+    border-color: orangered;
+}
+
+.post-page blockquote.tip {
+    border-color: dodgerblue;
 }
