@@ -4,21 +4,18 @@
     {{ $assets := .Assets }}
     {{ range .Posts }}
     <div class="post">
-        <a class="post-title link-muted" href="{{.URL}}">{{.Preamble.Title}}</a>
-        <div class="post-timestamp">
-            Publication Date: {{.VerbosePublicationDate}}
-        </div>
-        <div class="post-digest">
-            {{.Digest}}
-        </div>
+        <div class="post-header">
         {{ if .IsForeign }}
-        <img class="post-foreign-logo" src="{{index $assets.Images .Logo}}" height="30">
+            <div class="post-foreign-logo">
+                <img src="{{index $assets.Images .Logo}}" height="30" alt="logo">
+            </div>
         {{ end }}
-{{/*        <div class="post-footer text-muted">*/}}
-{{/*        {{ if .IsForeign }}*/}}
-{{/*            <img class="post-foreign-logo" src="{{index $assets.Images .Logo}}" height="30">*/}}
-{{/*        {{ end }}*/}}
-{{/*        </div>*/}}
+            <div class="post-title">
+                <a class="link-muted" href="{{.URL}}">{{.Preamble.Title}}</a>
+            </div>
+        </div>
+        <div class="post-timestamp">{{.VerbosePublicationDate}}</div>
+        <div class="post-digest">{{.Digest}}</div>
     </div>
     {{ end }}
 </div>

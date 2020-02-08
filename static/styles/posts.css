@@ -26,17 +26,31 @@
     font-family: "Oswald", serif;
 }
 
-.post .post-footer {
+.post .post-header {
     display: block;
+    height: 40px;
     width: 100%;
-    height: 30px;
 }
 
-.post .post-footer .post-foreign-logo {
+.post .post-timestamp {
+    font-family: "Source Serif Pro", serif;
+    font-size: 0.9em;
+    color: #36373c;
+    font-weight: bold;
+}
+
+.post .post-header .post-title {
+    width: 90%;
     float: left;
 }
 
-.post .post-footer .post-timestamp {
+.post .post-header .post-foreign-logo {
+    width: 10%;
+    float: right;
+    margin-top: 5px;
+}
+
+.post .post-header .post-foreign-logo img {
     float: right;
 }
 
