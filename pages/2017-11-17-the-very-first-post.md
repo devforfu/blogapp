@@ -217,30 +217,8 @@ If you don't suppress TF debugging info output, you'll see a notification about
 
 ### References
 
-<ol>
-  <li>
-    <a href="https://askubuntu.com/questions/799184/how-can-i-install-cuda-on-ubuntu-16-04">
-        How can I install CUDA on Ubuntu 16.04?
-    </a>
-  </li>
-  <li>
-    <a href="https://askubuntu.com/questions/767269/how-can-i-install-cudnn-on-ubuntu-16-04">
-        How can I install CuDNN on Ubuntu 16.04?
-    </a>
-  </li>
-  <li>
-    <a href="https://stackoverflow.com/questions/31326015/how-to-verify-cudnn-installation/36978616#36978616">
-        How to verify cuDNN installation?
-    </a>
-  </li>
-  <li>
-    <a href="https://www.tensorflow.org/install/install_linux#InstallingNativePip">
-        Installing TensorFlow on Ubuntu with native PIP
-    </a>
-  </li>
-  <li>
-    <a href="https://developer.nvidia.com/deep-learning">
-        NVIDIA Deep Learning Portal
-    </a>
-  </li>
-</ol>
+1. [How can I install CUDA on Ubuntu 16.04?](https://askubuntu.com/questions/799184/how-can-i-install-cuda-on-ubuntu-16-04)
+1. [How can I install CuDNN on Ubuntu 16.04?](https://askubuntu.com/questions/767269/how-can-i-install-cudnn-on-ubuntu-16-04)
+1. [How to verify cuDNN installation?](https://stackoverflow.com/questions/31326015/how-to-verify-cudnn-installation/36978616#36978616)
+1. [Installing TensorFLow on Ubuntu with native PIP](https://www.tensorflow.org/install/install_linux#InstallingNativePip)
+1. [NVIDIA Deep Learning Portal](https://developer.nvidia.com/deep-learning)

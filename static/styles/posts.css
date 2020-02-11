@@ -74,6 +74,7 @@
     margin-top: 2%;
     font-family: "Source Serif Pro", sans-serif;
     text-align: justify;
+    padding-bottom: 5%;
 }
 
 .post-page pre.prettify {
@@ -89,7 +90,7 @@
 }
 
 .post-page .list-of-contents a:hover {
-    color: #414eb4;
+    color: goldenrod;
 }
 
 .post-page .list-of-contents .list-item-wrapper {
@@ -123,10 +124,10 @@
     border-color: dodgerblue;
 }
 
-.post-page .post-content p a {
+.post-page .post-content p a, .post-page .post-content blockquote a {
     color: inherit;
 }
 
-.post-page .post-content p a:hover {
+.post-page .post-content p a:hover, .post-page .post-content blockquote a:hover {
     color: goldenrod;
 }
