@@ -5,10 +5,11 @@
 .post {
     background: white;
     padding: 1em;
-    border: 1px solid #404040;
+    /*border: 1px dashed #404040;*/
     margin-top: 1em;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: justify;
 }
 
 .link-muted {
@@ -72,6 +73,7 @@
     margin-right: 20%;
     margin-top: 2%;
     font-family: "Source Serif Pro", sans-serif;
+    text-align: justify;
 }
 
 .post-page pre.prettify {
@@ -86,7 +88,7 @@
     list-style: none;
 }
 
-.post-page a:hover {
+.post-page .list-of-contents a:hover {
     color: #414eb4;
 }
 
@@ -119,4 +121,12 @@
 
 .post-page blockquote.tip {
     border-color: dodgerblue;
+}
+
+.post-page .post-content p a {
+    color: inherit;
+}
+
+.post-page .post-content p a:hover {
+    color: goldenrod;
 }

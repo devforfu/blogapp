@@ -13,7 +13,9 @@ const FormatWrappedPostContent = `
 {{ define "content" }}
 <div class="post-page">
 <h2 class="post-title">%s</h2>
+<div class="post-content">
 %s
+</div>
 </div>
 {{ end }}
 `
