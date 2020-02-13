@@ -40,9 +40,9 @@ execution which elements are directly accessed using integer indexes.
 The crucial difference between generators and lists is that it does not provide
 a random access to its elements and does not keep them in memory. Moreover, in 
 general, it **doesn't know in advance** how many elements will be produced. It 
-can only yield the results one by one, when `next()` function or method is called:
+can only yield the results one by one, when `next()` function or method is called.
 
-![Generator](/assets/img/chain.png){: .center-image}
+<img class="image-center" src="/static/images/posts/chain.png" alt="chain" width="450">
 
 Conceptually, a generator could be thought of as a sort of [state machine](https://en.wikipedia.org/wiki/Finite-state_machine)
 that changes its state on demand and produces the new elements while moving from 
@@ -73,9 +73,10 @@ that tracks the progress and creates the new elements depending on the previous
 calls. When the function `catalan` is called the first time, the body of the 
 function is executed until the first occurrence of the `yield` keyword. 
 In order to continue generator's execution and retrieve the produced values, one could:
+
 1. Use the `next` built-in to get a single value from the generator
-2. Pass generator object into a sequence constructor like `list`
-3. Use `for-in` loop (which implicitly calls `next` on every iteration) to iterate over all available elements
+1. Pass generator object into a sequence constructor like `list`
+1. Use `for-in` loop (which implicitly calls `next` on every iteration) to iterate over all available elements
 
 Here is an example of creating a generator and retrieving its values.
 ```Python
@@ -205,7 +206,7 @@ $$
 256 \times 256 \times 3 \times 8 = 1.5 \mathrm{Mb}
 $$
 
-It means that dataset of 10000 images will occupy $$\approx14.6\mathrm{Gb}$$ of memory.
+It means that dataset of 10000 images will occupy $\approx14.6\mathrm{Gb}$ of memory.
 Even if you have enough space to load all these files at once, your system could
 slow down or raise an out-of-memory error later during the next steps. Also, the data
 augmentation process is performed on the fly and cannot be cached so you can't
@@ -215,7 +216,7 @@ is not a flexible solution.
 
 An alternative approach is to read the images gradually in small chunks, converting 
 every of them into the expected representation, and sending them into the training algorithm afterwards.
-To achieve this goal, you can create a group of generators where every of them is expecting a $$(x, y)$$ 
+To achieve this goal, you can create a group of generators where every of them is expecting an $(x, y)$ 
 pair with the images and labels, applies transformations, and yields it to the next transformer in the chain.
 
 <blockquote class="tip">
@@ -247,7 +248,7 @@ images
 ...
 ```
 
-The function `dataset()` implements the logic described above and produces $$(paths, labels)$$
+The function `dataset()` implements the logic described above and produces $(paths, labels)$
 pairs where every element of a pair has the length of `batch_size`. Every `next()` call will
 produce a new batch of the data. Note that on this step no images are stored in the memory,
 only their paths, and labels. Therefore, when a generator is created, it occupies

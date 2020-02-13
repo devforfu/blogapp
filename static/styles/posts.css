@@ -131,3 +131,10 @@
 .post-page .post-content p a:hover, .post-page .post-content blockquote a:hover {
     color: goldenrod;
 }
+
+.image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
