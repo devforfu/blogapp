@@ -5,11 +5,6 @@
     {{ range .Posts }}
     <div class="post">
         <div class="post-header">
-        {{ if .IsForeign }}
-            <div class="post-foreign-logo">
-                <img src="{{index $assets.Images .Logo}}" height="30" alt="logo">
-            </div>
-        {{ end }}
             <div class="post-title">
                 <a class="link-muted" href="{{.URL}}">{{.Preamble.Title}}</a>
             </div>

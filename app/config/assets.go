@@ -39,6 +39,11 @@ var DefaultAssets = Assets{
         "LogoMedium": image("logo/medium.png"),
         "LogoTowardsdatascience": image("logo/medium.png"),
         "LogoHackernoon": image("logo/hackernoon.png"),
+        "NetworkGithub": image("links/github.png"),
+        "NetworkStackOverflow": image("links/stackoverflow.png"),
+        "NetworkMedium": image("links/medium.png"),
+        "NetworkUpwork": image("links/upwork.png"),
+        "NetworkLinkedIn": image("links/linkedin.png"),
     },
     Styles: map[string]string{
         "Reset": css("reset.css"),

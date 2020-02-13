@@ -36,6 +36,9 @@
     border-bottom: black 1px dashed;
 }
 
+.networking .icon {
+    width: 22px;
+}
 
 /*.nav ul {*/
 /*    margin: 0;*/

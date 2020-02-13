@@ -8,12 +8,6 @@
     <link rel="stylesheet" href="{{$href}}">
     {{ end }}
     <link rel="stylesheet" href="{{.Assets.FontsURL}}">
-    <style>
-        .background {
-            background: white url("{{.Assets.Images.TopHeaderBackground}}");
-        }
-    </style>
-    <script src="{{.Assets.JS.Main}}"></script>
 </head>
 <body onload="setup()">
     <div class="topmost">
@@ -28,15 +22,36 @@
             <li class="resume"><a href="#">Resume</a></li>
             <li class="projects"><a href="#">Projects</a></li>
             <div class="networking">
-                <li><a href="#">GitHub</a></li>
-                <li><a href="#">Stack Overflow</a></li>
-                <li><a href="#">Medium</a></li>
-                <li><a href="#">Upwork</a></li>
-                <li><a href="#">LinkedIn</a></li>
+                <li>
+                    <a href="https://github.com/devforfu">
+                        <img class="icon" src="{{.Assets.Images.NetworkGithub}}" alt="GitHub">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://stackoverflow.com/users/6619344/devforfu">
+                        <img class="icon" src="{{.Assets.Images.NetworkStackOverflow}}" alt="Stack Overflow">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://medium.com/@iliazaitsev">
+                        <img class="icon" src="{{.Assets.Images.NetworkMedium}}" alt="Medium">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.upwork.com/freelancers/~01d11961a8111e5d25">
+                        <img class="icon" src="{{.Assets.Images.NetworkUpwork}}" alt="Upwork">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/ilia-zaitsev/">
+                        <img class="icon" src="{{.Assets.Images.NetworkLinkedIn}}" alt="LinkedIn">
+                    </a>
+                </li>
             </div>
         </ul>
     </div>
     {{ template "content" . }}
+    <script src="{{.Assets.JS.Main}}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({

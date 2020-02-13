@@ -40,6 +40,7 @@ type Post struct {
     URL string
     Logo string
     IsForeign bool
+    Source string
 }
 
 // TODO:
@@ -76,7 +77,8 @@ func NewPost(ref *PostReference) (*Post, error) {
         PublicationDate:published,
         URL:url,
         IsForeign:isForeign,
-        Logo:fmt.Sprintf("Logo%s", strings.Title(logo))}
+        Logo:fmt.Sprintf("Logo%s", strings.Title(logo)),
+        Source:logo}
 
     return post, nil
 }
