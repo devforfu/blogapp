@@ -27,11 +27,11 @@
     font-family: "Oswald", serif;
 }
 
-.post .post-header {
-    display: block;
-    height: 40px;
-    width: 100%;
-}
+/*.post .post-header {*/
+/*    display: block;*/
+/*    height: 40px;*/
+/*    width: 100%;*/
+/*}*/
 
 .post .post-timestamp {
     font-family: "Source Serif Pro", serif;
@@ -40,20 +40,21 @@
     font-weight: bold;
 }
 
-.post .post-header .post-title {
-    width: 90%;
-    float: left;
-}
+/*.post .post-header .post-title {*/
+/*    width: 100%;*/
+/*    display: block;*/
+/*    float: left;*/
+/*}*/
 
-.post .post-header .post-foreign-logo {
-    width: 10%;
-    float: right;
-    margin-top: 5px;
-}
+/*.post .post-header .post-foreign-logo {*/
+/*    width: 10%;*/
+/*    float: right;*/
+/*    margin-top: 5px;*/
+/*}*/
 
-.post .post-header .post-foreign-logo img {
-    float: right;
-}
+/*.post .post-header .post-foreign-logo img {*/
+/*    float: right;*/
+/*}*/
 
 .post code {
     border-radius: 4px;

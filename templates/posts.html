@@ -4,11 +4,7 @@
     {{ $assets := .Assets }}
     {{ range .Posts }}
     <div class="post">
-        <div class="post-header">
-            <div class="post-title">
-                <a class="link-muted" href="{{.URL}}">{{.Preamble.Title}}</a>
-            </div>
-        </div>
+        <div class="post-title"><a class="link-muted" href="{{.URL}}">{{.Preamble.Title}}</a></div>
         <div class="post-timestamp">{{.VerbosePublicationDate}}</div>
         <div class="post-digest">{{.Digest}}</div>
     </div>
