@@ -38,6 +38,7 @@ var DefaultAssets = Assets{
         "TopHeaderBackgroundOverlay": image("writings.png"),
         "LogoMedium": image("logo/medium.png"),
         "LogoTowardsdatascience": image("logo/medium.png"),
+        "LogoHackernoon": image("logo/hackernoon.png"),
     },
     Styles: map[string]string{
         "Reset": css("reset.css"),
