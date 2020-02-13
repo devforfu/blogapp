@@ -1,9 +1,9 @@
 package blog
 
 import (
-    "blogapp/app/config"
     "encoding/json"
     "fmt"
+    "github.com/devforfu/blogapp/app/config"
     util "github.com/devforfu/fastgoing"
     "gopkg.in/russross/blackfriday.v2"
     "html/template"

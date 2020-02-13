@@ -1,7 +1,7 @@
 package blog
 
 import (
-	"blogapp/app/config"
+	"github.com/devforfu/blogapp/app/config"
 	util "github.com/devforfu/fastgoing"
 	log "github.com/sirupsen/logrus"
 	"os"

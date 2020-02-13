@@ -1,10 +1,10 @@
 package server
 
 import (
-    "blogapp/app/blog"
-    "blogapp/app/cache"
-    "blogapp/app/config"
     "fmt"
+    "github.com/devforfu/blogapp/app/blog"
+    "github.com/devforfu/blogapp/app/cache"
+    "github.com/devforfu/blogapp/app/config"
     util "github.com/devforfu/fastgoing"
     "github.com/gorilla/mux"
     log "github.com/sirupsen/logrus"

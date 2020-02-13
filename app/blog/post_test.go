@@ -1,8 +1,8 @@
 package blog
 
 import (
-    "blogapp/app/config"
     "fmt"
+    "github.com/devforfu/blogapp/app/config"
     "github.com/stretchr/testify/assert"
     "testing"
 )

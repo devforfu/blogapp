@@ -2,7 +2,7 @@
 package cache
 
 import (
-	"blogapp/app/blog"
+	"github.com/devforfu/blogapp/app/blog"
 	"math/rand"
 )
 

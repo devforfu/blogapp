@@ -1,9 +1,9 @@
 package main
 
 import (
-    "blogapp/app/config"
-    "blogapp/app/server"
     "context"
+    "github.com/devforfu/blogapp/app/config"
+    "github.com/devforfu/blogapp/app/server"
     log "github.com/sirupsen/logrus"
     "net/http"
     "os"
