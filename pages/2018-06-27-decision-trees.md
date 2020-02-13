@@ -41,7 +41,7 @@ Mathematically, it represents a function that takes as input a vector of attribu
 values and returns a "decision" --- a single output value. The tree reaches its decision by 
 performing a sequence of tests on a given observation attributes. Each internal node in the tree 
 corresponds to a test of the value of one of the observation's attributes $A_i$, and the 
-branches from the node are labeled with the possible values of the attribute $A_i = v_{ik}$. 
+branches from the node are labeled with the possible values of the attribute $A\_i = v\_{ik}$. 
 Every leaf node in the tree specifies a value to be returned by the function.
 
 However, in the post we're describing a bit simplified version of this general conception. 
@@ -77,7 +77,7 @@ we're discussing one of the purest versions of the Decision Tree algorithm imple
 as the pseudo-code shows.
 
 ```python
-def decision_tree(D, depth):
+def decision_tree(D: Dataset, depth: int) -> Node:
     if depth >= THRESHOLD:
         return majority_class(D)
 
@@ -87,7 +87,7 @@ def decision_tree(D, depth):
     best_split = None
     for feature in features(D):
         for value in unique(feature):
-            split = select_samples_less_or_equal(value, from=D)
+            split = select_samples_less_or_equal(value, dataset=D)
             quality = compute_quality(split, D, classes(D))
             if better(quality, best_split):
                 best_split = quality
