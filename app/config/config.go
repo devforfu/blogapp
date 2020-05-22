@@ -1,13 +1,12 @@
 package config
 
 import (
-    "encoding/json"
     "fmt"
+    "github.com/devforfu/blogapp/app/assets"
     util "github.com/devforfu/fastgoing"
     "github.com/sirupsen/logrus"
     log "github.com/sirupsen/logrus"
     "path/filepath"
-    "strings"
 )
 
 const defaultPreambleSeparator = "<!--preamble-->"
@@ -22,25 +21,21 @@ const defaultDigestSeparator = "<!--more-->"
 type Config struct {
     PagesRoot string
     TemplatesRoot string
+    StaticRoot string
+    StaticFilesMap string
     LoggingLevel logrus.Level
     PostPreambleSeparator string
     PostDigestSeparator string
-}
-
-// Verbose returns configuration as a list of string, one line per property.
-func (c *Config) Verbose() (lines []string) {
-    indented, _ := json.MarshalIndent(c, "", "\t")
-    lines = strings.Split(string(indented), "\n")
-    return lines
+    Assets *assets.Assets
 }
 
 // Validate ensures that the given configuration doesn't lead to errors.
 func (c *Config) Validate() {
-    if ok, _ := util.Exists(c.TemplatesRoot); !ok {
-        log.Fatalf("Templates root is not found: %s", c.TemplatesRoot)
-    }
-    if ok, _ := util.Exists(c.PagesRoot); !ok {
-        log.Fatalf("Pages root is not found: %s", c.PagesRoot)
+    paths := []string{c.TemplatesRoot, c.PagesRoot, c.StaticRoot, c.StaticFilesMap}
+    for _, path := range paths {
+        if ok, _ := util.Exists(c.TemplatesRoot); !ok {
+            log.Fatalf("file is not found: %s", path)
+        }
     }
 }
 
@@ -53,6 +48,8 @@ func FromEnvironment() *Config {
         cwd = util.WorkDir()
         pagesRoot = util.DefaultEnv("APP_PAGES_ROOT", filepath.Join(cwd, "pages"))
         templatesRoot = util.DefaultEnv("APP_TEMPLATES_ROOT", filepath.Join(cwd, "templates"))
+        staticRoot = util.DefaultEnv("APP_STATIC_ROOT", filepath.Join(cwd, "static"))
+        staticFilesMap = util.DefaultEnv("APP_STATIC_FILES_MAP", filepath.Join(cwd, "assets.json"))
         appVerbosity = util.DefaultEnv("APP_VERBOSITY", "debug")
         postPreambleSeparator = util.DefaultEnv("APP_POST_PREAMBLE_SEP", defaultPreambleSeparator)
         postDigestSeparator = util.DefaultEnv("APP_POST_DIGEST_SEP", defaultDigestSeparator)
@@ -68,6 +65,8 @@ func FromEnvironment() *Config {
     return &Config{
         PagesRoot:             pagesRoot,
         TemplatesRoot:         templatesRoot,
+        StaticRoot:            staticRoot,
+        StaticFilesMap:        staticFilesMap,
         LoggingLevel:          loggingLevel,
         PostPreambleSeparator: postPreambleSeparator,
         PostDigestSeparator:   postDigestSeparator}

@@ -1,0 +1,31 @@
+{
+  "images": {
+    "TopHeaderBackground": "blueprint.png",
+    "TopHeaderBackgroundOverlay": "writings.png",
+    "NetworkGithub": "links/github.png",
+    "NetworkStackOverflow": "links/stackoverflow.png",
+    "NetworkMedium": "links/medium.png",
+    "NetworkUpwork": "links/upwork.png",
+    "NetworkLinkedIn": "links/linkedin.png"
+  },
+  "styles": {
+    "Reset": "reset.css",
+    "PageHeader": "topmost_header.css",
+    "PostsPreviewCards": "posts.css",
+    "Navigation": "navigation.css",
+    "Code": "code.css"
+  },
+  "scripts": {
+    "Main": "lib.js"
+  },
+  "required_fonts": [
+    "Average",
+    "Source+Serif+Pro:400,700",
+    "Quantico",
+    "Roboto",
+    "Oswald",
+    "Roboto+Slab:400,700",
+    "Ubuntu",
+    "Ubuntu+Mono"
+  ]
+}
