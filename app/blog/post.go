@@ -88,7 +88,7 @@ func (p *Post) RenderWith(baseTemplateName string, w io.Writer) {
     t := template.Must(template.ParseFiles(path))
     wrappedPage := fmt.Sprintf(config.FormatWrappedPostContent, p.Preamble.Title, p.Preamble.Title, p.RenderedPage)
     t = template.Must(t.Parse(wrappedPage))
-    data := map[string]interface{}{"Assets": config.DefaultAssets}
+    data := map[string]interface{}{"Assets": config.ServerConfig.Assets}
     util.Check(t.ExecuteTemplate(w, baseTemplateName, data))
 }
 

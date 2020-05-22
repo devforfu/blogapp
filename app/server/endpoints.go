@@ -16,7 +16,7 @@ import (
 
 func Home(w http.ResponseWriter, req *http.Request) {
     t := parseTemplates("main", "home")
-    data := map[string]interface{}{"Assets": config.DefaultAssets}
+    data := map[string]interface{}{"Assets": config.ServerConfig.Assets}
     util.Check(t.ExecuteTemplate(w, "main", data))
 }
 
@@ -25,7 +25,7 @@ func Posts(w http.ResponseWriter, req *http.Request) {
     sort.Sort(sort.Reverse(posts))
     t := parseTemplates( "posts", "main")
     data := map[string]interface{} {
-        "Assets":config.DefaultAssets,
+        "Assets":config.ServerConfig.Assets,
         "Posts":posts,
     }
     util.Check(t.ExecuteTemplate(w, "main", data))
