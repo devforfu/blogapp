@@ -22,5 +22,9 @@ func init() {
     config.ServerConfig = config.FromEnvironment()
     log.SetOutput(os.Stdout)
     log.SetLevel(config.ServerConfig.LoggingLevel)
+    for _, line := range config.ServerConfig.Verbose() {
+        log.Debug(line)
+    }
+    config.ServerConfig.Validate()
 }
 
