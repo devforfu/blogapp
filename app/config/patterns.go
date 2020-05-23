@@ -8,16 +8,4 @@ var RegexURL = util.MustRegexpMap(`https?:\/\/(?P<origin>[\w]+)\.(com|org|io|ru)
 var RegexMDFile = util.MustRegexpMap(`(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})-(?P<name>[\w\W]+)\.md$`)
 var RegexJSONPreamble = util.MustRegexpMap("^```json\n(?P<preamble>[\\w\\W]+)```")
 
-const FormatWrappedPostContent = `
-{{ define "title" }}%s{{ end }}
-{{ define "content" }}
-<div class="posts-page">
-<h2 class="posts-title">%s</h2>
-<div class="posts-content">
-%s
-</div>
-</div>
-{{ end }}
-`
-
 const FormatVerboseDate = "Jan 02, 2006"
