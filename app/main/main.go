@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+    defer log.Exit(0)
     srv := server.New()
     log.Debugf("starting listening the address: %s", srv.Addr)
     if err := srv.ListenAndServe(); err != http.ErrServerClosed {
@@ -22,7 +23,7 @@ func main() {
 
 func init() {
     config.ServerConfig = config.FromEnvironment()
-    log.SetOutput(os.Stdout)
+    log.SetOutput(os.Stderr)
     log.SetLevel(config.ServerConfig.LoggingLevel)
     config.ServerConfig.Assets = assets.FromJSON(config.ServerConfig.StaticFilesMap)
     config.ServerConfig.Validate()
@@ -30,4 +31,3 @@ func init() {
         log.Debug(line)
     }
 }
-
