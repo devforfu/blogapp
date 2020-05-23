@@ -82,8 +82,12 @@ func (p *Post) IsForeign() bool {
 }
 
 func (p *Post) URL() string {
-    url := fmt.Sprintf("/posts/%d/%02d/%02d/%s", p.Year, p.Month, p.Day, p.Name)
-    return strings.ToLower(url)
+    if p.IsForeign() {
+        return p.Meta.ForeignURL
+    } else {
+        url := fmt.Sprintf("/posts/%d/%02d/%02d/%s", p.Year, p.Month, p.Day, p.Name)
+        return strings.ToLower(url)
+    }
 }
 
 func (p *Post) Logo() string {
