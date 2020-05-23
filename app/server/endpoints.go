@@ -14,7 +14,7 @@ import (
 )
 
 func Posts(w http.ResponseWriter, req *http.Request) {
-    log.Debugf("posts: received request from: %s", req.RemoteAddr)
+    log.Debugf("%s::%s", req.RemoteAddr, req.URL)
     allPosts := posts.FetchFromFolder(config.ServerConfig.PagesRoot)
     t := parseTemplates("posts", "main")
     err := t.ExecuteTemplate(w, "main", map[string]interface{} {
@@ -28,7 +28,7 @@ func Posts(w http.ResponseWriter, req *http.Request) {
 }
 
 func Article(w http.ResponseWriter, req *http.Request) {
-    log.Debugf("article: received request from: %s", req.RemoteAddr)
+    log.Debugf("%s::%s", req.RemoteAddr, req.URL)
     post, err := getPostFromRequest(req)
     if err != nil {
         log.Debugf("cannot resolve the template: %s", err)
