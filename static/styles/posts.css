@@ -5,7 +5,6 @@
 .post {
     background: white;
     padding: 1em;
-    /*border: 1px dashed #404040;*/
     margin-top: 1em;
     margin-left: 15%;
     margin-right: 15%;
@@ -27,34 +26,12 @@
     font-family: "Oswald", serif;
 }
 
-/*.post .post-header {*/
-/*    display: block;*/
-/*    height: 40px;*/
-/*    width: 100%;*/
-/*}*/
-
 .post .post-timestamp {
     font-family: "Source Serif Pro", serif;
     font-size: 0.9em;
     color: #36373c;
     font-weight: bold;
 }
-
-/*.post .post-header .post-title {*/
-/*    width: 100%;*/
-/*    display: block;*/
-/*    float: left;*/
-/*}*/
-
-/*.post .post-header .post-foreign-logo {*/
-/*    width: 10%;*/
-/*    float: right;*/
-/*    margin-top: 5px;*/
-/*}*/
-
-/*.post .post-header .post-foreign-logo img {*/
-/*    float: right;*/
-/*}*/
 
 .post code {
     border-radius: 4px;
@@ -138,4 +115,22 @@
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+}
+
+/* ------------------------- */
+/* Width-specific properties */
+/* ------------------------- */
+
+@media (max-width: 800px) {
+    .post, .post-page {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1100px) {
+    .post, .post-page {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
 }

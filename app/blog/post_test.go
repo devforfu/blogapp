@@ -25,11 +25,11 @@ func TestReadPreamble(t *testing.T) {
 
 # Example
 
-An example of post content that goes right after *preamble*.
+An example of posts content that goes right after *preamble*.
 ` + "```python\nx=1\n```"
 
     expectedPost := "# Example\n\n" +
-                    "An example of post content that goes right after *preamble*.\n" +
+                    "An example of posts content that goes right after *preamble*.\n" +
                     "```python\nx=1\n```"
 
     markdownFileContent := fmt.Sprintf("```json%s```%s", jsonPreamble, postContent)

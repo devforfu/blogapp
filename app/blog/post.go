@@ -14,25 +14,25 @@ import (
     "time"
 )
 
-// PostReference keeps information that helps map URL suffix to post file name.
+// PostReference keeps information that helps map URL suffix to posts file name.
 type PostReference struct {
     Year, Month, Day int
     Name string
 }
 
 func (ref *PostReference) URL() string {
-    url := fmt.Sprintf("/post/%d/%02d/%02d/%s", ref.Year, ref.Month, ref.Day, ref.Name)
+    url := fmt.Sprintf("/posts/%d/%02d/%02d/%s", ref.Year, ref.Month, ref.Day, ref.Name)
     return strings.ToLower(url)
 }
 
-// Filename converts publication date and post name into a name of Markdown
-// file with post content.
+// Filename converts publication date and posts name into a name of Markdown
+// file with posts content.
 func (ref *PostReference) Filename() string {
     filename := fmt.Sprintf("%d-%02d-%02d-%s.md", ref.Year, ref.Month, ref.Day, ref.Name)
     return strings.ToLower(filename)
 }
 
-// Post represent a single post content.
+// Post represent a single posts content.
 type Post struct {
     Preamble *PostPreamble
     PublicationDate time.Time
@@ -44,7 +44,7 @@ type Post struct {
 }
 
 // TODO:
-//      split the post into smaller pieces and render with a proper template
+//      split the posts into smaller pieces and render with a proper template
 //      instead of string formatting how it is done now; there should be a
 //      "raw" page content and convenient access functions Digest and Content.
 //

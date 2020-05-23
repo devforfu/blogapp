@@ -5,7 +5,7 @@ function setup() {
 }
 
 /*
- * Creates contents list for a post if contents section is available.
+ * Creates contents list for a posts if contents section is available.
  */
 function createContentsList() {
     const sections = enumerateSections("h3.header");
@@ -22,7 +22,7 @@ function createContentsList() {
         span.appendChild(anchorLink);
 
         const listItem = document.createElement('li');
-        listItem.classList += " post-section-link list-unstyled";
+        listItem.classList += " posts-section-link list-unstyled";
         listItem.appendChild(span);
 
         contents.appendChild(listItem);

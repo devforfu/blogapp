@@ -11,9 +11,9 @@ var RegexJSONPreamble = util.MustRegexpMap("^```json\n(?P<preamble>[\\w\\W]+)```
 const FormatWrappedPostContent = `
 {{ define "title" }}%s{{ end }}
 {{ define "content" }}
-<div class="post-page">
-<h2 class="post-title">%s</h2>
-<div class="post-content">
+<div class="posts-page">
+<h2 class="posts-title">%s</h2>
+<div class="posts-content">
 %s
 </div>
 </div>

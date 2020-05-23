@@ -22,7 +22,7 @@ func ListPosts() PostsList {
 					Name:match["name"]}
 				post, err := NewPost(ref)
 				if err != nil {
-					log.Warnf("failed to create post: %s", err)
+					log.Warnf("failed to create posts: %s", err)
 				} else {
 					posts = append(posts, post)
 				}
