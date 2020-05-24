@@ -172,13 +172,13 @@ from the right side of that statement.
 
 It means that instead of having all logic inside of single program or creating
 the stateful objects with their own attributes and properties, we can create a
-group of generators passing the data from one to another in a sequential way.
+group of generators passing the data from one to another sequentially.
 
 The shown example is quite simple and can be easily implemented in more straightforward 
 fashion, like creating a simple filtering function without any additional sophistication.
 The following section shows a more involved example of building a group of generators
 organized into the data processing pipeline that helps to decrease the amount of consumed
-memory to process the dataset of images in an iterative way.
+memory to process the dataset of images iteratively.
 
 <h3 class="header" id="images">Images Processing Pipeline</h3>
 

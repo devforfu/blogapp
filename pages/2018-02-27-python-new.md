@@ -167,10 +167,10 @@ class TemperatureConverter(metaclass=abc.ABCMeta):
         raise NotImplementedError()
 ```
 
-See lines **8-16** showing how the dynamic dispatching should be implemented. The
-parameter `cls` mentioned at the beginning of this post is set to one of
+See how the `__new__` looks like, showing the dynamic dispatching of implementations. 
+The parameter `cls` mentioned at the beginning of this post refers to one of
 specific implementations of the converter class. Then an instance of that class is created. 
-Lines **18-20** show the public `convert()` method that makes some basic sanity check
+Also, check the public `convert()` method that makes some basic sanity check
 of the provided temperature value. Then it calls the "protected" `_convert()` method that
 should be overridden in the derived classes.
 
@@ -178,9 +178,9 @@ Now, it is time to write the implementations of the aforementioned specific clas
 Note that `_CelsiusConverter` class is written like you usually create the derived classes
 in Python by explicit derivation from the base class. But `_FahrenheitConverter`
 does not inherit from the `TemperatureConverter`. Instead, it is registered as a subclass via
-`ABCMeta.register` method in the line **37**. Though in this case, as soon as classes are not related
-the default implementations of the required methods are not available anymore and should 
-be written from the scratch.
+`ABCMeta.register` method. Though in this case, as soon as classes don't share the same
+hierarchy, the default implementations of the required methods are not available 
+anymore and should be written from the scratch.
 
 ```python
 class _CelsiusConverter(TemperatureConverter):
@@ -358,6 +358,7 @@ the same interface and class name by switching the configuration parameters maki
 the codebase cleaner and easier to maintain.
 
 <hr class="with-margin">
+
 ### References
 
 <ol>
