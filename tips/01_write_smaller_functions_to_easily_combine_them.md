@@ -12,7 +12,7 @@ def plot_count_bars(data: pd.DataFrame, column: str):
     return cnt.plot.bar(x='index', y='counts')
 
 plot_count_bars(load_data(), column='x')
-``` 
+```
 
 Looks good! However, what if we later create another function that generates
 a similar plot but using dots connected with a line instead of bars?

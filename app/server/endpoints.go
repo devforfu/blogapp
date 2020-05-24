@@ -3,6 +3,7 @@ package server
 import (
     "fmt"
     "github.com/devforfu/blogapp/app/blog/posts"
+    "github.com/devforfu/blogapp/app/blog/tips"
     "github.com/devforfu/blogapp/app/config"
     "github.com/gorilla/mux"
     log "github.com/sirupsen/logrus"
@@ -40,6 +41,31 @@ func Article(w http.ResponseWriter, req *http.Request) {
         if err != nil {
             log.Debugf("failed to render a post: %s", err)
             http.NotFound(w, req)
+        }
+    }
+}
+
+func Tip(w http.ResponseWriter, req *http.Request) {
+    params := mux.Vars(req)
+    order, err := strconv.ParseInt(params["order"], 10, 32)
+    if err != nil {
+        log.Debugf("wrong tip number")
+        http.NotFound(w, req)
+    } else {
+        tip, err := tips.LoadTip(int(order), config.ServerConfig.TipsRoot)
+        if err != nil || tip == nil {
+            log.Debugf("failed to load tip")
+            http.NotFound(w, req)
+        } else {
+            t := parseTemplates("tip", "main")
+            err = t.ExecuteTemplate(w, "main", map[string]interface{}{
+                "Assets": config.ServerConfig.Assets,
+                "Tip":    tip,
+            })
+            if err != nil {
+                log.Debugf("failed to render a tip: %s", err)
+                http.NotFound(w, req)
+            }
         }
     }
 }

@@ -1,0 +1,9 @@
+{{ define "title" }}{{.Tip.Title}}{{ end }}
+{{ define "content" }}
+    <div class="post-page">
+        <h2 class="post-title">Tip #{{.Tip.Order}}: {{.Tip.Title}}</h2>
+        <div class="post-content">
+            {{.Tip.Content}}
+        </div>
+    </div>
+{{ end }}

@@ -20,6 +20,7 @@ const defaultDigestSeparator = "<!--more-->"
 // should be used.
 type Config struct {
     PagesRoot string
+    TipsRoot string
     TemplatesRoot string
     StaticRoot string
     StaticFilesMap string
@@ -47,6 +48,7 @@ func FromEnvironment() *Config {
     var (
         cwd = util.WorkDir()
         pagesRoot = util.DefaultEnv("APP_PAGES_ROOT", filepath.Join(cwd, "pages"))
+        tipsRoot = util.DefaultEnv("APP_TIPS_ROOT", filepath.Join(cwd, "tips"))
         templatesRoot = util.DefaultEnv("APP_TEMPLATES_ROOT", filepath.Join(cwd, "templates"))
         staticRoot = util.DefaultEnv("APP_STATIC_ROOT", filepath.Join(cwd, "static"))
         staticFilesMap = util.DefaultEnv("APP_STATIC_FILES_MAP", filepath.Join(cwd, "assets.json"))
@@ -64,6 +66,7 @@ func FromEnvironment() *Config {
     }
     return &Config{
         PagesRoot:             pagesRoot,
+        TipsRoot:              tipsRoot,
         TemplatesRoot:         templatesRoot,
         StaticRoot:            staticRoot,
         StaticFilesMap:        staticFilesMap,
