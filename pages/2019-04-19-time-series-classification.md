@@ -1,10 +1,9 @@
 ```json
 {
   "category": "blog",
-  "title": "How to Fail a Coding Interview",
-  "tags": ["design-patterns", "coding-skills"],
-  "image": "fail.png",
-  "foreign_url": "https://hackernoon.com/how-to-fail-a-coding-interview-8d02cb70225f"
+  "title": "Time Series Classification with PyTorch",
+  "tags": ["python", "deep-learning", "pytorch", "kaggle"],
+  "foreign_url": "https://www.kaggle.com/purplejester/pytorch-deep-time-series-classification?scriptVersionId=13160945"
 }
 ```
 
