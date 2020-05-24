@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{$href}}">
     {{ end }}
     <link rel="stylesheet" href="{{.Assets.FontsURL}}">
+    <link rel="stylesheet" href="{{.Assets.SyntaxHighlightTheme}}">
 </head>
 <body onload="setup()">
     <div class="topmost">
@@ -51,8 +52,6 @@
         </ul>
     </div>
     {{ template "content" . }}
-    <script src="{{.Assets.JS.Main}}"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         tex2jax: {
@@ -64,16 +63,10 @@
     <script type="text/javascript" async
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <script>
-        function addSyntaxHighlight() {
-            const items = document.getElementsByTagName("pre");
-            for (const item of items) {
-                item.classList += " prettyprint";
-            }
-        }
-        addSyntaxHighlight();
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="{{.Assets.JS.Main}}"></script>
 </body>
 </html>
 {{ end }}

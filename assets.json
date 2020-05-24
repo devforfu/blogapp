@@ -27,5 +27,6 @@
     "Roboto+Slab:400,700",
     "Ubuntu",
     "Ubuntu+Mono"
-  ]
+  ],
+  "syntax_highlight_theme": "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/atom-one-light.min.css"
 }

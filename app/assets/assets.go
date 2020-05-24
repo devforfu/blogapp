@@ -10,10 +10,11 @@ import (
 )
 
 type Assets struct {
-    Images map[string]string `json:"images"`
-    Styles map[string]string `json:"styles"`
-    JS map[string]string     `json:"scripts"`
-    Fonts []string           `json:"required_fonts"`
+    Images map[string]string    `json:"images"`
+    Styles map[string]string    `json:"styles"`
+    JS map[string]string        `json:"scripts"`
+    Fonts []string              `json:"required_fonts"`
+    SyntaxHighlightTheme string `json:"syntax_highlight_theme"`
 }
 
 const googleFontsURL = "https://fonts.googleapis.com/css?family=%s&display=swap"
