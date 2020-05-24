@@ -14,6 +14,7 @@ type Assets struct {
     Styles map[string]string    `json:"styles"`
     JS map[string]string        `json:"scripts"`
     Fonts []string              `json:"required_fonts"`
+    ResumeLink string           `json:"cv"`
     SyntaxHighlightTheme string `json:"syntax_highlight_theme"`
 }
 
