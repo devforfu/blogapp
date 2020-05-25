@@ -1,0 +1,8 @@
+.tips-list {
+    padding: 0;
+    list-style: none;
+}
+
+.tips-list a, .tips-list a:visited {
+    color: blue;
+}

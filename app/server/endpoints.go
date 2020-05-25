@@ -45,6 +45,28 @@ func Article(w http.ResponseWriter, req *http.Request) {
     }
 }
 
+func TipsList(w http.ResponseWriter, req *http.Request) {
+    allTips, err := tips.FetchFromFolder(config.ServerConfig.TipsRoot)
+
+    if err != nil {
+        log.Debugf("failed to load tips: %s", err)
+        http.NotFound(w, req)
+        return
+    }
+
+    t := parseTemplates("tips", "main")
+    err = t.ExecuteTemplate(w,"main", map[string]interface{}{
+        "Assets": config.ServerConfig.Assets,
+        "Tips": allTips,
+    })
+
+    if err != nil {
+        log.Debugf("failedto to render the template: %s", err)
+        http.NotFound(w, req)
+        return
+    }
+}
+
 func Tip(w http.ResponseWriter, req *http.Request) {
     params := mux.Vars(req)
     order, err := strconv.ParseInt(params["order"], 10, 32)
@@ -54,7 +76,7 @@ func Tip(w http.ResponseWriter, req *http.Request) {
     } else {
         tip, err := tips.LoadTip(int(order), config.ServerConfig.TipsRoot)
         if err != nil || tip == nil {
-            log.Debugf("failed to load tip")
+            log.Debugf("failed to load tip: %s", err)
             http.NotFound(w, req)
         } else {
             t := parseTemplates("tip", "main")

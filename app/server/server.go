@@ -12,6 +12,7 @@ func New() *http.Server {
     router.HandleFunc("/", Posts)
     router.HandleFunc("/posts", Posts)
     router.HandleFunc(`/posts/{year:[0-9]+}/{month:[0-9]+}/{day:[0-9]+}/{posts:[a-zA-Z0-9\-]+}`, Article)
+    router.HandleFunc("/tips", TipsList)
     router.HandleFunc(`/tips/{order:[0-9]+}`, Tip)
     router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
     router.Use(LoggingMiddleware(router))

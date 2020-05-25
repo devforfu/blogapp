@@ -12,6 +12,7 @@
     "Reset": "reset.css",
     "PageHeader": "topmost_header.css",
     "PostsPreviewCards": "posts.css",
+    "TipsList": "tips.css",
     "Navigation": "navigation.css",
     "Code": "code.css"
   },

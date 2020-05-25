@@ -1,0 +1,21 @@
+{{ define "title"}}Tips{{ end }}
+{{ define "content" }}
+    <div class="post-page">
+        <h2 class="post-title">
+            Tips and Tricks
+        </h2>
+        <article>
+            When developing software, every once in a while, the same pattern
+            emerges again and again. Or you discover a useful trick, interesting
+            observation, good practice. Usually, these little snippets are too
+            small to convert them into a proper blog post or elaborated article.
+            This section exists to collect these helpful tips together at the
+            same place.
+        </article>
+        <ul class="tips-list">
+        {{ range .Tips }}
+            <li><a href="/tips/{{.Order}}">{{.EnumeratedTitle}}</a></li>
+        {{ end }}
+        </ul>
+    </div>
+{{ end }}
