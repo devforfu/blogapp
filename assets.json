@@ -29,6 +29,6 @@
     "Ubuntu",
     "Ubuntu+Mono"
   ],
-  "cv": "https://www.dropbox.com/s/b3tp95vi8xun9w2/IliaZaitsev_CV_05_2020.pdf?dl=0",
+  "cv": "/static/resume/cv.pdf",
   "syntax_highlight_theme": "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/atom-one-light.min.css"
 }
