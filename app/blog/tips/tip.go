@@ -80,7 +80,7 @@ func FetchFromFolder(dirName string) (List, error) {
         }
     }
 
-    sort.Sort(sort.Reverse(tips))
+    sort.Sort(tips)
 
     return tips, nil
 }
