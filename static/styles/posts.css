@@ -17,6 +17,7 @@
 }
 
 .post .post-digest {
+    font-size: 1.2em;
     font-family: "Source Serif Pro", serif;
 }
 
@@ -42,13 +43,15 @@
     border: lightgray solid 1px;
 }
 
+.post-page .post-content {
+    font-size: 1.2em;
+}
+
 /* ------------- */
 /* Posts content */
 /* ------------- */
 
 .post-page {
-    margin-left: 20%;
-    margin-right: 20%;
     margin-top: 2%;
     font-family: "Source Serif Pro", sans-serif;
     text-align: justify;
@@ -89,9 +92,8 @@
 
 .post-page blockquote {
     margin: 0;
-    border-left: 5px solid;
-    padding-left: 10px;
-    padding-right: 10px;
+    border-left: 0.25em solid;
+    padding-left: 0.5em;
 }
 
 .post-page blockquote.warning {
@@ -106,6 +108,15 @@
     color: inherit;
 }
 
+.post-page .post-content a {
+    text-decoration: none;
+    border-bottom: 1px dashed;
+}
+
+.post-page .post-content div.list-of-contents a {
+    border-bottom: 0;
+}
+
 .post-page .post-content p a:hover, .post-page .post-content blockquote a:hover {
     color: goldenrod;
 }
@@ -117,20 +128,42 @@
     width: 70%;
 }
 
+.post-page .post-content table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.post-page .post-content table tr {
+    border: 1px solid #ddd;
+}
+
+tr .highlight {
+    color: #fc1d3f;
+}
+
 /* ------------------------- */
 /* Width-specific properties */
 /* ------------------------- */
 
 @media (max-width: 800px) {
     .post, .post-page {
-        margin-left: 1em;
-        margin-right: 1em;
+        margin-left: 10%;
+        margin-right: 10%;
     }
 }
 
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 801px) and (max-width: 1980px) {
     .post, .post-page {
-        margin-left: 15%;
-        margin-right: 15%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media (min-width: 1981px) and (max-width: 2560px) {
+    .post, .post-page {
+        margin-left: 30%;
+        margin-right: 30%;
     }
 }

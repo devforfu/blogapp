@@ -1,4 +1,12 @@
 code {
     background-color: #fde9ce;
-    font-size: 14px;
+    font-size: 0.85em;
+    border: 1px solid #f9cba7;
+    border-radius: 0.1em;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+}
+
+code.hljs {
+    border: 0;
 }
