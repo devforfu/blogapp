@@ -55,7 +55,7 @@
     margin-top: 2%;
     font-family: "Source Serif Pro", sans-serif;
     text-align: justify;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
 }
 
 .post-page pre.prettify {
@@ -141,6 +141,14 @@
 
 tr .highlight {
     color: #fc1d3f;
+}
+
+/* ---------------- */
+/* Comments section */
+/* ---------------- */
+
+.utterances-frame {
+    margin-left: -2em;
 }
 
 /* ------------------------- */
