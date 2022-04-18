@@ -2,20 +2,6 @@ function setup() {
     if (document.querySelector('.list-of-contents') !== null) {
         createContentsList();
     }
-    // bindSelectors();
-}
-
-function bindSelectors() {
-    const links = document.querySelectorAll('.website-pages li.website');
-    for (const element of links) {
-        const item = element;
-        element.onclick = function() {
-            for (const other of links) {
-                other.classList.remove('selected');
-            }
-            item.classList.add('selected');
-        }
-    }
 }
 
 /*

@@ -1,0 +1,17 @@
+/* A list of entries */
+.post-page ul.tags {
+    list-style: none;
+    display: block;
+    width: 100%;
+    float: left;
+    text-align: center;
+    margin-top: -1em;
+    padding-inline-start: 0;
+}
+
+.post-page ul.tags li {
+    display: inline-block;
+    padding: 0.2em;
+    background-color: #fde9ce;
+    border: 1px solid #f9cba7;
+}

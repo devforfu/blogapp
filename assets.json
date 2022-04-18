@@ -15,7 +15,8 @@
     "PostsPreviewCards": "posts.css",
     "TipsList": "tips.css",
     "Navigation": "navigation.css",
-    "Code": "code.css"
+    "Code": "code.css",
+    "Tags": "tags.css"
   },
   "scripts": {
     "Main": "lib.js"
