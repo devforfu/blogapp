@@ -13,11 +13,43 @@
 <body onload="setup()">
     <div class="topmost">
         <div class="text">
-            <div class="title">Ilia Zaitsev</div>
+            <div class="title"><a href="/" class="title-link">Ilia Zaitsev</a></div>
             <div class="subtitle">{Machine Learning, Data Science, AI}</div>
         </div>
     </div>
     <div class="nav" id="nav-site-pages">
+        <ul class="mobile">
+            <li>
+                <a href="https://github.com/devforfu">
+                    <img class="icon" src="{{.Assets.Images.NetworkGithub}}" alt="GitHub">
+                </a>
+            </li>
+            <li>
+                <a href="https://stackoverflow.com/users/6619344/devforfu">
+                    <img class="icon" src="{{.Assets.Images.NetworkStackOverflow}}" alt="Stack Overflow">
+                </a>
+            </li>
+            <li>
+                <a href="https://medium.com/@iliazaitsev">
+                    <img class="icon" src="{{.Assets.Images.NetworkMedium}}" alt="Medium">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.upwork.com/freelancers/~01d11961a8111e5d25">
+                    <img class="icon" src="{{.Assets.Images.NetworkUpwork}}" alt="Upwork">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/ilia-zaitsev/">
+                    <img class="icon" src="{{.Assets.Images.NetworkLinkedIn}}" alt="LinkedIn">
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/devforfu">
+                    <img class="icon" src="{{.Assets.Images.NetworkTwitter}}" alt="Twitter">
+                </a>
+            </li>
+        </ul>
         <ul class="website-pages">
             <li class="website posts selected"><a href="/posts">Posts</a></li>
             <li class="website resume"><a href="{{.Assets.ResumeLink}}">Resume</a></li>
