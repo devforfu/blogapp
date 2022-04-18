@@ -1,8 +1,19 @@
+.post-page article {
+    font-size: 1.2em;
+}
+
 .tips-list {
     padding: 0;
     list-style: none;
+    font-size: 1.2em;
 }
 
 .tips-list a, .tips-list a:visited {
-    color: blue;
+    color: inherit;
+    border-bottom: 1px dashed;
+    text-decoration: none;
+}
+
+.tips-list a:hover {
+    color: goldenrod;
 }
