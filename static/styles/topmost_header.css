@@ -25,7 +25,8 @@
 
 .topmost .subtitle {
     color: #404040;
-    font-size: 1.2em;
+    /*color: #414eb4;*/
+    font-size: 1.4em;
     font-family: "Ubuntu Mono", monospace;
     padding-bottom: 10px;
 }

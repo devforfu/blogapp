@@ -2,3 +2,5 @@
 
 Website: iliazaitsev.me
 
+Icons: https://www.svgrepo.com
+

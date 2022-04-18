@@ -2,11 +2,12 @@
   "images": {
     "TopHeaderBackground": "blueprint.png",
     "TopHeaderBackgroundOverlay": "writings.png",
-    "NetworkGithub": "links/github.png",
-    "NetworkStackOverflow": "links/stackoverflow.png",
-    "NetworkMedium": "links/medium.png",
-    "NetworkUpwork": "links/upwork.png",
-    "NetworkLinkedIn": "links/linkedin.png"
+    "NetworkGithub": "links/github.svg",
+    "NetworkStackOverflow": "links/stackoverflow.svg",
+    "NetworkMedium": "links/medium.svg",
+    "NetworkUpwork": "links/upwork.svg",
+    "NetworkLinkedIn": "links/linkedin.svg",
+    "NetworkTwitter": "links/twitter.svg"
   },
   "styles": {
     "Reset": "reset.css",
